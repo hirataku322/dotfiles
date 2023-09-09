@@ -48,7 +48,6 @@ fd() {
 }
 
 # eval
-eval "$(thefuck --alias fk)"
 eval "$(starship init zsh)"
 . ~/ghq/github.com/rupa/z/z.sh
 

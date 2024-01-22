@@ -35,7 +35,6 @@ Plug 'lambdalisue/fern-renderer-nerdfont.vim'
 
 " git
 Plug 'akinsho/toggleterm.nvim', {'tag' : '*'}
-Plug 'tpope/vim-fugitive'
 
 " Other
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
@@ -351,9 +350,6 @@ vim.api.nvim_set_keymap("n", "<leader>lg", "<cmd>lua _lazygit_toggle()<CR>", { n
 
 -- Nvim-web-Devicon
 require'nvim-web-devicons'.setup {
- -- your personnal icons can go here (to override)
- -- you can specify color or cterm_color instead of specifying both of them
- -- DevIcon will be appended to `name`
  override = {
   zsh = {
     icon = "",
@@ -362,19 +358,9 @@ require'nvim-web-devicons'.setup {
     name = "Zsh"
   }
  };
- -- globally enable different highlight colors per icon (default to true)
- -- if set to false all icons will have the default icon's color
  color_icons = true;
- -- globally enable default icons (default to false)
- -- will get overriden by `get_icons` option
  default = true;
- -- globally enable "strict" selection of icons - icon will be looked up in
- -- different tables, first by filename, and if not found by extension; this
- -- prevents cases when file doesn't have any extension but still gets some icon
- -- because its name happened to match some extension (default to false)
  strict = true;
- -- same as `override` but specifically for overrides by filename
- -- takes effect when `strict` is true
  override_by_filename = {
   [".gitignore"] = {
     icon = "",
@@ -382,8 +368,6 @@ require'nvim-web-devicons'.setup {
     name = "Gitignore"
   }
  };
- -- same as `override` but specifically for overrides by extension
- -- takes effect when `strict` is true
  override_by_extension = {
   ["log"] = {
     icon = "",
@@ -393,48 +377,21 @@ require'nvim-web-devicons'.setup {
  };
 }
 
-require('lualine').setup {
-  options = {
-    icons_enabled = true,
-    theme = 'iceberg_dark',
-    component_separators = { left = '', right = ''},
-    section_separators = { left = '', right = ''},
-    disabled_filetypes = {
-      statusline = {},
-      winbar = {},
-    },
-    ignore_focus = {},
-    always_divide_middle = true,
-    globalstatus = false,
-    refresh = {
-      statusline = 1000,
-      tabline = 1000,
-      winbar = 1000,
-    }
-  },
-  sections = {
-    lualine_a = {'mode'},
-    lualine_b = {'branch', 'diff', 'diagnostics'},
-    lualine_c = {'filename'},
-    lualine_x = {'encoding', 'fileformat', 'filetype'},
-    lualine_y = {'progress'},
-    lualine_z = {'location'}
-  },
-  inactive_sections = {
-    lualine_a = {},
-    lualine_b = {},
-    lualine_c = {'filename'},
-    lualine_x = {'location'},
-    lualine_y = {},
-    lualine_z = {}
-  },
-  tabline = {},
-  winbar = {},
-  inactive_winbar = {},
-  extensions = {},
-  globalstatus = false
-}
+require('overseer').setup({
+  templates = {"builtin", "user.run_script" },
+})
 
-require('overseer').setup()
+vim.api.nvim_create_user_command("WatchRun", function()
+  local overseer = require("overseer")
+  overseer.run_template({ name = "run script" }, function(task)
+    if task then
+      task:add_component({ "restart_on_save", paths = {vim.fn.expand("%:p")} })
+      local main_win = vim.api.nvim_get_current_win()
+      overseer.run_action(task, "open vsplit")
+      vim.api.nvim_set_current_win(main_win)
+    else
+      vim.notify("WatchRun not supported for filetype " .. vim.bo.filetype, vim.log.levels.ERROR)
+    end
+  end)
+end, {})
 EOF
-

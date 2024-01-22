@@ -18,8 +18,6 @@ Plug 'easymotion/vim-easymotion'
 Plug 'ggandor/leap.nvim'
 Plug 'junegunn/vim-easy-align'
 Plug 'bkad/CamelCaseMotion'
-Plug 'thinca/vim-quickrun'
-
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Telescope
@@ -39,21 +37,17 @@ Plug 'lambdalisue/fern-renderer-nerdfont.vim'
 Plug 'akinsho/toggleterm.nvim', {'tag' : '*'}
 Plug 'tpope/vim-fugitive'
 
-" markdown preview
+" Other
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
-
-" copilot
 Plug 'github/copilot.vim'
-
-" snippet
 Plug 'honza/vim-snippets'
+Plug 'stevearc/overseer.nvim'
 
 call plug#end()
 
 lua require('Comment').setup()
 lua require("toggleterm").setup()
 lua require('telescope').load_extension('fzf')
-" lua require("telescope").load_extension("file_browser")
 
 " Trigger configuration. You need to change this to something other than <tab> if you use one of the following:
 " - https://github.com/Valloric/YouCompleteMe
@@ -156,25 +150,25 @@ nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 
 "vim easy-motion 
-  noremap <leader>f <Plug>(easymotion-bd-w)
+noremap <leader>f <Plug>(easymotion-bd-w)
 
-  " command + c でコピー
-  " DはCommand。terminal自体のショートカットキーとしてCommandが割り当てられている事が多く、動作しない可能性があるらしい
-  " noremap <D-c> y "
+" command + c でコピー
+" DはCommand。terminal自体のショートカットキーとしてCommandが割り当てられている事が多く、動作しない可能性があるらしい
+" noremap <D-c> y "
 
-  " CamelCaseMotion
-  map <silent> w <Plug>CamelCaseMotion_w
-  map <silent> b <Plug>CamelCaseMotion_b
-  map <silent> e <Plug>CamelCaseMotion_e
-  map <silent> ge <Plug>CamelCaseMotion_ge
-  sunmap w
-  sunmap b
-  sunmap e
-  sunmap ge
+" CamelCaseMotion
+map <silent> w <Plug>CamelCaseMotion_w
+map <silent> b <Plug>CamelCaseMotion_b
+map <silent> e <Plug>CamelCaseMotion_e
+map <silent> ge <Plug>CamelCaseMotion_ge
+sunmap w
+sunmap b
+sunmap e
+sunmap ge
 
-  " Telecsope
-  nnoremap <C-p> <cmd>Telescope find_files<cr>
-  nnoremap <leader>jg <cmd>Telescope live_grep<cr>
+" Telecsope
+nnoremap <C-p> <cmd>Telescope find_files<cr>
+nnoremap <leader>jg <cmd>Telescope live_grep<cr>
 nnoremap <leader>jb <cmd>Telescope buffers<cr>
 nnoremap <leader>jh <cmd>Telescope help_tags<cr>
 
@@ -440,5 +434,7 @@ require('lualine').setup {
   extensions = {},
   globalstatus = false
 }
+
+require('overseer').setup()
 EOF
 

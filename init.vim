@@ -1,15 +1,21 @@
 call plug#begin('~/.vim/plugged')
 
-" Visual
-Plug 'nvim-tree/nvim-web-devicons'
-Plug 'sainnhe/gruvbox-material'
+" Visual 
+Plug 'nvim-tree/nvim-web-devicons' 
+Plug 'sainnhe/gruvbox-material' 
 Plug 'sheerun/vim-polyglot' "syntax highlight
 Plug 'lambdalisue/glyph-palette.vim'
+
+" Status Line
+Plug 'nvim-lualine/lualine.nvim'
+" If you want to have icons in your statusline choose one of these
+Plug 'nvim-tree/nvim-web-devicons'
 
 " Vim Command
 Plug 'tpope/vim-surround'
 Plug 'numToStr/Comment.nvim'
 Plug 'easymotion/vim-easymotion'
+Plug 'ggandor/leap.nvim'
 Plug 'junegunn/vim-easy-align'
 Plug 'bkad/CamelCaseMotion'
 Plug 'thinca/vim-quickrun'
@@ -29,11 +35,18 @@ Plug 'lambdalisue/fern-git-status.vim'
 Plug 'lambdalisue/nerdfont.vim'
 Plug 'lambdalisue/fern-renderer-nerdfont.vim'
 
-" lazy-git
+" git
 Plug 'akinsho/toggleterm.nvim', {'tag' : '*'}
+Plug 'tpope/vim-fugitive'
 
-" vim-scouter
-Plug 'thinca/vim-scouter'
+" markdown preview
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
+
+" copilot
+Plug 'github/copilot.vim'
+
+" snippet
+Plug 'honza/vim-snippets'
 
 call plug#end()
 
@@ -42,12 +55,24 @@ lua require("toggleterm").setup()
 lua require('telescope').load_extension('fzf')
 " lua require("telescope").load_extension("file_browser")
 
+" Trigger configuration. You need to change this to something other than <tab> if you use one of the following:
+" - https://github.com/Valloric/YouCompleteMe
+" - https://github.com/nvim-lua/completion-nvim
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
+" leaderの設定
+let mapleader = "\<Space>"
+
 " カラーテーマ
 if has('termguicolors')
   set termguicolors
 endif
 
-" For dark version.
 set background=dark
 
 " Set contrast.
@@ -57,27 +82,26 @@ let g:gruvbox_material_background = 'medium'
 let g:gruvbox_material_transparent_background=2
 " For better performance
 let g:gruvbox_material_better_performance = 1
-
 colorscheme gruvbox-material
-let g:airline_theme='gruvbox_material'
 
 "setting
 set number
-set fenc=utf-8 "文字コードをUFT-8に設定
-set nobackup "バックアップファイルを作らない
-set noswapfile "スワップファイルを作らない
-set autoread "編集中のファイルが変更されたら自動で読み直す
-set hidden "バッファが編集中でもその他のファイルを開けるように
-set showcmd "入力中のコマンドをステータスに表示する
+set fenc=utf-8 
+set nobackup 
+set noswapfile 
+set autoread 
+set hidden 
+set showcmd 
 
-"見た目系
+" Visual
 set virtualedit=onemore "行末の1文字先までカーソルを移動できるように
-set smartindent "インデントはスマートインデント
+set smartindent 
 set showmatch "括弧入力時の対応する括弧を表示
-set laststatus=2 "ステータスラインを常に表示
+set laststatus=2 
 set wildmode=list:longest "コマンドラインの補完
+set cursorline
 
-syntax enable "シンタックスハイライトの有効化
+syntax enable 
 
 "Tab系
 set list listchars=tab:\▸\- "不可視文字を可視化(タブが「▸-」と表示される)
@@ -99,8 +123,16 @@ set clipboard+=unnamed
 set helplang=ja,en
 set history=1000
 
-" vim helpを垂直分割で開く
-nnoremap <leader>h :vertical help<Space>
+"Buffer
+au BufRead, BufNewFile *.hql set filetype=sql " hqlを .sql ファイルとして扱う
+
+" タブ操作
+nnoremap <leader>t :tabnew<CR>
+nnoremap <leader>l :tabnext<CR>
+nnoremap <leader>h :tabprevious<CR>
+
+" 現在のタブを閉じる
+nnoremap <leader>q :tabclose<CR>
 
 "折り返し時に表示行単位での移動できるようにする
 nnoremap j gj
@@ -110,9 +142,8 @@ nnoremap k gk
 inoremap <silent> <C-c> <ESC>
 vnoremap <silent> <C-c> <ESC>
 
-nnoremap H Hzz
-nnoremap M Mzz
-nnoremap L Lzz
+nnoremap zz zt
+nnoremap zt zz
 
 "コマンド履歴をたどる際のフィルタリングを可能にする
 cnoremap <C-p> <Up>
@@ -125,26 +156,25 @@ nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 
 "vim easy-motion 
-let mapleader = "\<Space>"
-noremap <leader>f <Plug>(easymotion-bd-w)
+  noremap <leader>f <Plug>(easymotion-bd-w)
 
-" command + c でコピー
-" DはCommand。terminal自体のショートカットキーとしてCommandが割り当てられている事が多く、動作しない可能性があるらしい
-" noremap <D-c> y "
+  " command + c でコピー
+  " DはCommand。terminal自体のショートカットキーとしてCommandが割り当てられている事が多く、動作しない可能性があるらしい
+  " noremap <D-c> y "
 
-" CamelCaseMotion
-map <silent> w <Plug>CamelCaseMotion_w
-map <silent> b <Plug>CamelCaseMotion_b
-map <silent> e <Plug>CamelCaseMotion_e
-map <silent> ge <Plug>CamelCaseMotion_ge
-sunmap w
-sunmap b
-sunmap e
-sunmap ge
+  " CamelCaseMotion
+  map <silent> w <Plug>CamelCaseMotion_w
+  map <silent> b <Plug>CamelCaseMotion_b
+  map <silent> e <Plug>CamelCaseMotion_e
+  map <silent> ge <Plug>CamelCaseMotion_ge
+  sunmap w
+  sunmap b
+  sunmap e
+  sunmap ge
 
-" Telecsope
-nnoremap <C-p> <cmd>Telescope find_files<cr>
-nnoremap <leader>jg <cmd>Telescope live_grep<cr>
+  " Telecsope
+  nnoremap <C-p> <cmd>Telescope find_files<cr>
+  nnoremap <leader>jg <cmd>Telescope live_grep<cr>
 nnoremap <leader>jb <cmd>Telescope buffers<cr>
 nnoremap <leader>jh <cmd>Telescope help_tags<cr>
 
@@ -257,9 +287,59 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 " Symbol renaming
 nmap <leader>rn <Plug>(coc-rename)
 
-" QuickRun
-let g:quickrun_config = {}
-autocmd BufNewFile, BufRead *.hql let g:quickrun_config.trino = {'exec': 'echo'}
+" Highlight extra whitespaces
+" https://zenn.dev/kawarimidoll/articles/450a1c7754bde6
+" u00A0 ' ' no-break space
+" u2000 ' ' en quad
+" u2001 ' ' em quad
+" u2002 ' ' en space
+" u2003 ' ' em space
+" u2004 ' ' three-per em space
+" u2005 ' ' four-per em space
+" u2006 ' ' six-per em space
+" u2007 ' ' figure space
+" u2008 ' ' punctuation space
+" u2009 ' ' thin space
+" u200A ' ' hair space
+" u200B '​' zero-width space
+" u3000 '　' ideographic (zenkaku) space
+autocmd VimEnter * ++once
+      \ call matchadd('ExtraWhitespace', "[\u00A0\u2000-\u200B\u3000]")
+      \ | highlight default ExtraWhitespace ctermbg=darkmagenta guibg=darkmagenta
+
+" 補完用floating windowの透明度を設定
+set pumblend=10
+
+" Snippets周りの設定
+" Use <C-l> for trigger snippet expand.
+vmap <C-l> <Plug>(coc-snippets-expand)
+
+" Use <C-j> for select text for visual placeholder of snippet.
+vmap <C-j> <Plug>(coc-snippets-select)
+
+" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+let g:coc_snippet_next = '<c-j>'
+
+" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+let g:coc_snippet_prev = '<c-k>'
+
+" Use <C-j> for both expand and jump (make expand higher priority.)
+imap <C-j> <Plug>(coc-snippets-expand-jump)
+
+" Use <leader>x for convert visual selected code to snippet
+xmap <leader>x  <Plug>(coc-convert-snippet)
+
+"Diagnosticsの、左横のアイコンの色設定
+highlight CocErrorSign ctermfg=15 ctermbg=196
+highlight CocWarningSign ctermfg=0 ctermbg=172
+
+"ノーマルモードで
+nmap <silent> <leader><leader> :CocList<cr>
+nmap <silent> <leader>h :<C-u>call CocAction('doHover')<cr>
+nmap <silent> <leader>df <Plug>(coc-definition)
+nmap <silent> <leader>rf <Plug>(coc-references)
+nmap <silent> <leader>rn <Plug>(coc-rename)
+nmap <silent> <leader>mt <Plug>(coc-format)
 
 " toggleterm
 lua << EOF
@@ -318,4 +398,47 @@ require'nvim-web-devicons'.setup {
   }
  };
 }
+
+require('lualine').setup {
+  options = {
+    icons_enabled = true,
+    theme = 'iceberg_dark',
+    component_separators = { left = '', right = ''},
+    section_separators = { left = '', right = ''},
+    disabled_filetypes = {
+      statusline = {},
+      winbar = {},
+    },
+    ignore_focus = {},
+    always_divide_middle = true,
+    globalstatus = false,
+    refresh = {
+      statusline = 1000,
+      tabline = 1000,
+      winbar = 1000,
+    }
+  },
+  sections = {
+    lualine_a = {'mode'},
+    lualine_b = {'branch', 'diff', 'diagnostics'},
+    lualine_c = {'filename'},
+    lualine_x = {'encoding', 'fileformat', 'filetype'},
+    lualine_y = {'progress'},
+    lualine_z = {'location'}
+  },
+  inactive_sections = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = {'filename'},
+    lualine_x = {'location'},
+    lualine_y = {},
+    lualine_z = {}
+  },
+  tabline = {},
+  winbar = {},
+  inactive_winbar = {},
+  extensions = {},
+  globalstatus = false
+}
 EOF
+

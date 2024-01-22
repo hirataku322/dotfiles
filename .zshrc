@@ -1,57 +1,62 @@
+# initialize
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+eval "$(starship init zsh)"
+
 # history
-export HISTFILE=${HOME}/.zsh_history 
+export HISTFILE=${HOME}/.zsh_history # 保存先
 export HISTSIZE=10000 # メモリに保存される履歴の件数
 export SAVEHIST=100000 # 履歴ファイルに保存される履歴の件数
 setopt hist_ignore_dups # 重複を記録しない
 setopt EXTENDED_HISTORY # 開始と終了を記録
 setopt extended_history #share_historyでもOK
-alias history='history -id'
 
 # basic
 alias mkdir="mkdir -p"
 alias cp='cp -r'
-alias ls='exa -F1 --sort=type'
-alias ll='ls -la --no-filesize --no-user --no-permissions --time-style long-iso'
+alias ls='exa -F1  --sort=type'
+alias ll='ls -la --no-user --no-permissions --time-style long-iso'
+alias wc='wc -l'
+alias head='head -n 10'
+alias history='history -id'
 
 # git
 alias gp="git push origin"
+alias gp2="git push -u origin HEAD"
 alias gpl="git pull origin"
 alias gc="git commit -m"
 alias ga="git add ."
 alias gac="git add -A && git commit"
 alias gacm="git add -A && git commit -ammend"
 alias gco="git checkout"
-alias gcb="git checkout -b"
+alias gcob="git checkout -b"
 alias gs="git status"
+alias gl="git plog"
 alias gm="git merge"
 alias gb="git branch"
-
-# neovim
-alias vim="nvim"
-alias zshrc="vim ~/.zshrc && source ~/.zshrc"
-
-# others
+alias cdg='cd "$(git rev-parse --show-toplevel)"'
+alias ghb="gh browse"
+alias ghp="gh pr create -w"
 alias ghqr='cd $(ghq list -p | fzf)'
 alias lz='lazygit'
-alias q="q -t"
-alias keygen='ssh-keygen -t rsa -b 4096 -C $1'
 
-# fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+alias v="nvim"
+alias vim="nvim"
+alias zs="nvim ~/.zshrc && source ~/.zshrc"
+alias zshrc='zs'
+
+alias q="q -tH"
+alias w3m="w3m -dump -cols 9999"
+alias to_tsv="awk '{ OFS=\"\t\" ; \$1=\$1 ; print \$0 }' $1"
+
 
 fd() {
-  # fd - cd to selected directory
   local dir
   dir=$(find ${1:-.} -path '*/\.*' -prune \
                   -o -type d -print 2> /dev/null | fzf +m) &&
   cd "$dir"
 }
 
-# eval
-eval "$(starship init zsh)"
-. ~/ghq/github.com/rupa/z/z.sh
-
-# man colorful
+# manを色付け
 man() {
   env \
     LESS_TERMCAP_mb=$(printf "\e[1;31m") \
@@ -63,3 +68,33 @@ man() {
     LESS_TERMCAP_us=$(printf "\e[1;32m") \
     man "$@"
 }
+
+# completionsを有効にする
+fpath+=~/.zfunc
+autoload -Uz compinit && compinit
+
+# docker
+dps() {
+  local container
+  container="$(docker ps -a | sed -e '1d' | fzf --height 40% --reverse | awk '{print $1}')"
+  if [ -n "${container}" ]; then
+    echo 'copying container-id...'
+    echo ${container} | tr -d '\n' | pbcopy
+  fi
+}
+
+drm() {
+  docker ps -a | sed 1d | fzf -q "$1" --no-sort -m --tac | awk '{ print $1 }' | xargs -r docker rm -f
+}
+
+dlogs() {
+  local container
+  container="$(docker ps -a -f status=running | sed -e '1d' | fzf --height 40% --reverse | awk '{print $1}')"
+  if [ -n "${container}" ]; then
+    docker logs -f --tail 100 ${container}
+  fi
+}
+
+# auto suggestions
+source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+bindkey '^k' autosuggest-accept

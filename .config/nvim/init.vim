@@ -18,6 +18,7 @@ set noswapfile
 set autoread 
 set hidden 
 set showcmd 
+set autochdir
 
 " Visual
 set virtualedit=onemore "行末の1文字先までカーソルを移動できるように
@@ -47,16 +48,8 @@ set clipboard+=unnamed
 set helplang=ja,en
 set history=1000
 
-"Buffer
-au BufRead, BufNewFile *.hql set filetype=sql " hqlを .sql ファイルとして扱う
-
-" タブ操作
-nnoremap <leader>t :tabnew<CR>
-nnoremap <leader>l :tabnext<CR>
-nnoremap <leader>h :tabprevious<CR>
-
-" 現在のタブを閉じる
-nnoremap <leader>q :tabclose<CR>
+nnoremap <silent> <C-j> :bprev<CR>
+nnoremap <silent> <C-k> :bnext<CR>
 
 "折り返し時に表示行単位での移動できるようにする
 nnoremap j gj
@@ -127,6 +120,9 @@ xmap ga <Plug>(EasyAlign)
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)"
 nmap ga <Plug>(EasyAlign)
+
+" autocmd
+au BufRead, BufNewFile *.hql set filetype=sql
 
 " toggleterm
 lua << EOF

@@ -37,7 +37,7 @@ alias cdg='cd "$(git rev-parse --show-toplevel)"'
 alias ghb="gh browse"
 alias ghp="gh pr create -w"
 alias ghqr='cd $(ghq list -p | fzf)'
-alias lz='lazygit'
+alias lg='lazygit'
 
 alias v="nvim"
 alias vim="nvim"

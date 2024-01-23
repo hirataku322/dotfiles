@@ -97,11 +97,7 @@ nnoremap <leader>jg <cmd>Telescope live_grep<cr>
 nnoremap <leader>jb <cmd>Telescope buffers<cr>
 nnoremap <leader>jh <cmd>Telescope help_tags<cr>
 
-" Airline SETTINGS
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
-
-"" ウィンドウ分割を楽にする設定
+" ウィンドウ分割を楽にする設定
 nnoremap ss :<C-u>sp<CR>
 nnoremap sv :<C-u>vs<CR>
 nnoremap sq :<C-u>q!<CR>

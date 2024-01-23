@@ -1,37 +1,12 @@
 runtime plug.vim
+runtime theme.vim
 
 lua require('Comment').setup()
 lua require("toggleterm").setup()
 lua require('telescope').load_extension('fzf')
 
-" Trigger configuration. You need to change this to something other than <tab> if you use one of the following:
-" - https://github.com/Valloric/YouCompleteMe
-" - https://github.com/nvim-lua/completion-nvim
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
-
-" leaderの設定
 let mapleader = "\<Space>"
-
-" カラーテーマ
-if has('termguicolors')
-  set termguicolors
-endif
-
-set background=dark
-
-" Set contrast.
-" This configuration option should be placed before `colorscheme gruvbox-material`.
-" Available values: 'hard', 'medium'(default), 'soft'
-let g:gruvbox_material_background = 'medium'
-let g:gruvbox_material_transparent_background=2
-" For better performance
-let g:gruvbox_material_better_performance = 1
-colorscheme gruvbox-material
 
 "setting
 set number

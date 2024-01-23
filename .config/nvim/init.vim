@@ -178,31 +178,8 @@ let g:fern#default_hidden=1 "隠しファイルをデフォルトで表示
 
 function! s:init_fern() abort
   nmap <buffer> D <Plug>(fern-action-trash=)y<CR>
-
-  " Find and enter project root
-  nnoremap <buffer><silent>
-        \ <Plug>(fern-my-enter-project-root)
-        \ :<C-u>call fern#helper#call(funcref('<SID>map_enter_project_root'))<CR>
-  nmap <buffer><expr><silent>
-        \ ^
-        \ fern#smart#scheme(
-        \   "^",
-        \   {
-        \     'file': "\<Plug>(fern-my-enter-project-root)",
-        \   }
-        \ )
+  nnoremap <buffer><silent> <Plug>(fern-my-enter-project-root) 
 endfunction
-
-function! s:map_enter_project_root(helper) abort
-  " NOTE: require 'file' scheme
-  let root = a:helper.get_root_node()
-  let path = root._path
-  let path = finddir('.git/..', path . ';')
-  execute printf('Fern %s', fnameescape(path))
-endfunction
-
-" You need this otherwise you cannot switch modified buffer
-set hidden
 
 augroup fern-custom
   autocmd! *

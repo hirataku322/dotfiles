@@ -182,6 +182,7 @@ function! s:init_fern() abort
 endfunction
 
 augroup ferun-custom
+augroup fern-custom
   autocmd! *
   autocmd FileType fern call s:init_fern()
 

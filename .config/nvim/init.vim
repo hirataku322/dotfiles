@@ -1,28 +1,13 @@
 runtime plug.vim
 runtime theme.vim
+runtime fern.vim
 
 lua require('Comment').setup()
 lua require("toggleterm").setup()
 lua require('telescope').load_extension('fzf')
 
-" leaderの設定
 let mapleader = "\<Space>"
-
-" カラーテーマ
-if has('termguicolors')
-  set termguicolors
-endif
-
-set background=dark
-
-" Set contrast.
-" This configuration option should be placed before `colorscheme gruvbox-material`.
-" Available values: 'hard', 'medium'(default), 'soft'
-let g:gruvbox_material_background = 'medium'
-let g:gruvbox_material_transparent_background=2
-" For better performance
-let g:gruvbox_material_better_performance = 1
-colorscheme gruvbox-material
+syntax enable 
 
 "setting
 set number
@@ -40,8 +25,6 @@ set showmatch "括弧入力時の対応する括弧を表示
 set laststatus=2 
 set wildmode=list:longest "コマンドラインの補完
 set cursorline
-
-syntax enable 
 
 "Tab系
 set list listchars=tab:\▸\- "不可視文字を可視化(タブが「▸-」と表示される)
@@ -98,10 +81,6 @@ cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 "vim easy-motion 
 noremap <leader>f <Plug>(easymotion-bd-w)
 
-" command + c でコピー
-" DはCommand。terminal自体のショートカットキーとしてCommandが割り当てられている事が多く、動作しない可能性があるらしい
-" noremap <D-c> y "
-
 " CamelCaseMotion
 map <silent> w <Plug>CamelCaseMotion_w
 map <silent> b <Plug>CamelCaseMotion_b
@@ -117,27 +96,6 @@ nnoremap <C-p> <cmd>Telescope find_files<cr>
 nnoremap <leader>jg <cmd>Telescope live_grep<cr>
 nnoremap <leader>jb <cmd>Telescope buffers<cr>
 nnoremap <leader>jh <cmd>Telescope help_tags<cr>
-
- " Fern
-nmap <C-n> :Fern . -reveal=% -drawer -toggle<CR>
-let g:fern#renderer = 'nerdfont'
-let g:fern#default_hidden=1 "隠しファイルをデフォルトで表示
-
-function! s:init_fern() abort
-  nmap <buffer> D <Plug>(fern-action-trash=)y<CR>
-  nnoremap <buffer><silent> <Plug>(fern-my-enter-project-root) 
-endfunction
-
-augroup fern-custom
-  autocmd! *
-  autocmd FileType fern call s:init_fern()
-
-" アイコンに色をつける
-augroup my-glyph-palette
-  autocmd! *
-  autocmd FileType fern call glyph_palette#apply()
-  autocmd FileType nerdtree,startify call glyph_palette#apply()
-augroup END
 
 " Airline SETTINGS
 let g:airline_powerline_fonts = 1

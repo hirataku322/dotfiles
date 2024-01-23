@@ -178,11 +178,12 @@ let g:fern#default_hidden=1 "隠しファイルをデフォルトで表示
 
 function! s:init_fern() abort
   nmap <buffer> D <Plug>(fern-action-trash=)y<CR>
+
 endfunction
 
 augroup ferun-custom
-    autocmd! *
-    autocmd FileType fern call s:init_fern()
+  autocmd! *
+  autocmd FileType fern call s:init_fern()
 
 " アイコンに色をつける
 augroup my-glyph-palette

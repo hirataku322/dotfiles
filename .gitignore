@@ -1,1 +1,9 @@
+.DS_Store
+
 .config/tmux/plugins
+.config/alacritty/themes
+.config/coc/extensions
+.config/karabiner/automatic_backups
+.config/raycast/extensions
+.config/gh
+.config/github-copilot

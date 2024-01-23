@@ -47,9 +47,11 @@ alias zshrc='zs'
 alias q="q -tH"
 alias w3m="w3m -dump -cols 9999"
 alias to_tsv="awk '{ OFS=\"\t\" ; \$1=\$1 ; print \$0 }' $1"
-
 alias bl="brew list"
 
+mkdircd() {
+  mkdir -p "$@" && eval cd "\"\$$#\"";
+}
 
 fd() {
   local dir

@@ -5,7 +5,6 @@ nmap <C-n> :Fern . -reveal=% -drawer -toggle<CR>
 
 function! s:init_fern() abort
   nmap <buffer> D <Plug>(fern-action-trash=)y<CR>
-  nnoremap <buffer><silent> <Plug>(fern-my-enter-project-root) 
 endfunction
 
 augroup fern-custom

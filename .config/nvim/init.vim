@@ -122,7 +122,7 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
 " autocmd
-au BufRead, BufNewFile *.hql set filetype=sql
+autocmd BufRead, BufNewFile *.hql set filetype=sql
 
 " toggleterm
 lua << EOF

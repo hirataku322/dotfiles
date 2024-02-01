@@ -35,6 +35,7 @@ Plug 'lambdalisue/fern-renderer-nerdfont.vim'
 
 " git
 Plug 'akinsho/toggleterm.nvim', {'tag' : '*'}
+Plug 'airblade/vim-gitgutter'
 
 " Other
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }

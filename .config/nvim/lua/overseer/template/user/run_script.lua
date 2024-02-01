@@ -4,7 +4,7 @@ return {
   builder = function()
     local file = vim.fn.expand("%:p")
     return {
-      cmd = { "python3"} ,
+      cmd = { "node"} ,
       args = { file },
       components = {
         { "on_output_quickfix", set_diagnostics = true },
@@ -14,6 +14,6 @@ return {
     }
   end,
   condition = {
-    filetype = {"python"},
+    filetype = {"javascript"},
   },
 }

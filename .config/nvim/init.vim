@@ -10,6 +10,7 @@ lua require('telescope').load_extension('fzf')
 let mapleader = "\<Space>"
 syntax enable 
 
+"setting
 set number
 set fenc=utf-8 
 set nobackup 
@@ -49,7 +50,6 @@ set history=1000
 
 nnoremap <silent> <C-j> :bprev<CR>
 nnoremap <silent> <C-k> :bnext<CR>
-nnoremap sd :bd<CR>
 
 "折り返し時に表示行単位での移動できるようにする
 nnoremap j gj
@@ -86,9 +86,8 @@ sunmap e
 sunmap ge
 
 " Telecsope
-let g:rooter_patterns = ['.git', '.svn', 'package.json', '!node_modules']
-nnoremap <expr> <C-p> ':Telescope find_files cwd='.FindRootDirectory().'/<cr>'
-nnoremap <expr> <leader>jg ':Telescope live_grep cwd='.FindRootDirectory().'/<cr>'
+nnoremap <C-p> <cmd>Telescope find_files<cr>
+nnoremap <leader>jg <cmd>Telescope live_grep<cr>
 nnoremap <leader>jb <cmd>Telescope buffers<cr>
 nnoremap <leader>jh <cmd>Telescope help_tags<cr>
 
@@ -124,11 +123,6 @@ nmap ga <Plug>(EasyAlign)
 
 " autocmd
 autocmd BufRead, BufNewFile *.hql set filetype=sql
-
-" jsonpath
-" Optionally copy path to a named register (* in this case) when calling :JsonPath
-let g:jsonpath_register = '*'
-au FileType json noremap <buffer> <silent> <leader>d :call jsonpath#echo()<CR>
 
 " toggleterm
 lua << EOF
@@ -191,20 +185,44 @@ vim.api.nvim_create_user_command("WatchRun", function()
   end)
 end, {})
 
-require('telescope').setup{
-  defaults = {
-    vimgrep_arguments = {
-      'rg',
-      '--color=never',
-      '--no-heading',
-      '--with-filename',
-      '--line-number',
-      '--column',
-      '--smart-case',
-      '--hidden',
-      '--glob',  -- this flag allows you to hide exclude these files and folders from your search 👇
-      '!{**/.git/*,**/node_modules/*,**/package-lock.json,**/yarn.lock, *.DS_Store}', 
+require('lualine').setup {
+  options = {
+    icons_enabled = true,
+    theme = 'nightfly',
+    component_separators = { left = '', right = ''},
+    section_separators = { left = '', right = ''},
+    disabled_filetypes = {
+      statusline = {},
+      winbar = {},
+    },
+    ignore_focus = {},
+    always_divide_middle = true,
+    globalstatus = false,
+    refresh = {
+      statusline = 1000,
+      tabline = 1000,
+      winbar = 1000,
     }
-  }
+  },
+  sections = {
+    lualine_a = {'mode'},
+    lualine_b = {'branch', 'diff', 'diagnostics'},
+    lualine_c = {'filename'},
+    lualine_x = {'filetype'},
+    lualine_y = {'progress'},
+    lualine_z = {'location'}
+  },
+  inactive_sections = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = {'filename'},
+    lualine_x = {'location'},
+    lualine_y = {},
+    lualine_z = {}
+  },
+  tabline = {},
+  winbar = {},
+  inactive_winbar = {},
+  extensions = {}
 }
 EOF

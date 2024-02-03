@@ -8,46 +8,6 @@ local set = vim.opt
 
 options = {noremap = true}
 
--- lazy.nvim options
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
-    lazypth,
-  })
-end
-
-set.rtp:prepend(lazypath)
-require("lazy").setup({
-  'tpope/vim-surround',
-  'numToStr/Comment.nvim',
-  'easymotion/vim-easymotion',
-
-  'sainnhe/gruvbox-material' ,
-  'sheerun/vim-polyglot', -- old syntax highlighting
-
-  'nvim-lualine/lualine.nvim',
-  'nvim-tree/nvim-web-devicons',
-
-  'lambdalisue/fern.vim',
-  -- 'lambdalisue/nerdfont.vim',
-  -- 'lambdalisue/fern-renderer-nerdfont.vim',
-  -- 'lambdalisue/glyph-palette.vim',
-
-  'github/copilot.vim',
-  'stevearc/overseer.nvim',
-  'airblade/vim-rooter',
-  'mogelbrod/vim-jsonpath',
-  'jalvesaq/Nvim-R',
-  {'akinsho/toggleterm.nvim', versoin = '*', config = true },
-  { 'nvim-telescope/telescope.nvim', tag = '0.1.5', dependencies = { 'nvim-lua/plenary.nvim' }},
-  {'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
-})
-
 -- Basic Options
 set.number=true
 set.fenc='utf-8' 
@@ -82,71 +42,170 @@ set.clipboard:append{'unnamedplus'}
 
 set.history=1000
 
-nnoremap <silent> <C-j> :bprev<CR>
-nnoremap <silent> <C-k> :bnext<CR>
-nnoremap sd :bd<CR>
+-- Mappings
+map('n', 'k', 'gk', options)
+map('n', 'j', 'gj', options)
+map('n', '<C-c>', '<ESC>', options)
+map('v', '<C-c>', '<ESC>', options)
+map('n', '<C-l>', ':nohlsearch<CR><C-l>', options)
 
+map('n', 'ss', ':sp<CR>', options)
+map('n', 'sv', ':vs<CR>', options)
+map('n', 'sq', ':q!<CR>', options)
+map('n', 'sj', '<C-w>j', options)
+map('n', 'sk', '<C-w>k', options)
+map('n', 'sl', '<C-w>l', options)
+map('n', 'sh', '<C-w>h', options)
+map('n', 'sJ', '<C-w>J', options)
+map('n', 'sK', '<C-w>K', options)
+map('n', 'sL', '<C-w>L', options)
+map('n', 'sH', '<C-w>H', options)
+map('n', 's>', '<C-w>>', options)
+map('n', 's<', '<C-w><', options)
+map('n', 's+', '<C-w>+', options)
+map('n', 's-', '<C-w>-', options)
 
-nnoremap j gj
-nnoremap k gk
+map('n', '<C-j>', ':bprev<CR>', options)
+map('n', '<C-k>', ':bnext<CR>', options)
+map('n', 'sd', ':bd<CR>', options)
 
+map('n', '<leader>f', '<Plug>(easymotion-bd-w)', options)
 
-inoremap <silent> <C-c> <ESC>
-vnoremap <silent> <C-c> <ESC>
+map('n', '<C-p>', ':Telescope find_files cwd=".FindRootDirectory()."<CR>', options)
+map('n', '<leader>jg', ':Telescope live_grep cwd=".FindRootDirectory()."<CR>', options)
+map('n', '<leader>jb', ':Telescope buffers<CR>', options)
+map('n', '<leader>jh', ':Telescope help_tags<CR>', options)
+map("n", "<leader>lg", "<cmd>lua _lazygit_toggle()<CR>", options)
 
-nnoremap zz zt
-nnoremap zt zz
+-- Nvim-R
+vim.g['R_vsplit'] = 1
+vim.g['R_assign'] = 0
+vim.g['R_nvimpager'] = 'horizontal'
+vim.g['R_objbr_place'] = 'console,right'
+vim.g['R_objbr_opendf'] = 0
+vim.g['R_app'] = 'radian'
+vim.g['R_cmd'] = 'R'
+vim.g['R_hl_term'] = 0
+vim.g['R_args'] = []  
+vim.g['R_bracketed_paste'] = 1
 
-
-cnoremap <C-p> <Up>
-cnoremap <C-n> <Down>
-
-
-nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
-
-
-cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
-
-
-noremap <leader>f <Plug>(easymotion-bd-w)
-
-
-map <silent> w <Plug>CamelCaseMotion_w
-map <silent> b <Plug>CamelCaseMotion_b
-map <silent> e <Plug>CamelCaseMotion_e
-map <silent> ge <Plug>CamelCaseMotion_ge
-sunmap w
-sunmap b
-sunmap e
-sunmap ge
-
-
+-- Telecsope
 let g:findroot_not_for_subdir = 0
 let g:rooter_patterns = ['.git', '.svn', 'package.json', '!node_modules']
-nnoremap <expr> <C-p> ':Telescope find_files cwd='.FindRootDirectory().'/<cr>'
-nnoremap <expr> <leader>jg ':Telescope live_grep cwd='.FindRootDirectory().'/<cr>'
-nnoremap <leader>jb <cmd>Telescope buffers<cr>
-nnoremap <leader>jh <cmd>Telescope help_tags<cr>
 
+require('telescope').setup{
+  defaults = {
+    vimgrep_arguments = {
+      'rg',
+      '--color=never',
+      '--no-heading',
+      '--with-filename',
+      '--line-number',
+      '--column',
+      '--smart-case',
+      '--hidden',
+      '--glob',
+      '!{**/.git/*,**/node_modules/*,**/package-lock.json,**/yarn.lock, *.DS_Store}'
+    }
+  },
+}
 
-nnoremap ss :<C-u>sp<CR>
-nnoremap sv :<C-u>vs<CR>
-nnoremap sq :<C-u>q!<CR>
-nnoremap sQ :<C-u>bd<CR>
-nnoremap sj <C-w>j
-nnoremap sk <C-w>k
-nnoremap sl <C-w>l
-nnoremap sh <C-w>h
-nnoremap sJ <C-w>J
-nnoremap sK <C-w>K
-nnoremap sL <C-w>L
-nnoremap sH <C-w>H
-nnoremap s> <C-w>>
-nnoremap s< <C-w><
-nnoremap s+ <C-w>+
-nnoremap s- <C-w>-
+-- Toggleterm
+function _lazygit_toggle()
+  Terminal:new({
+    cmd = "lazygit",
+    direction = "float",
+    hidden = true
+  }).toggle()
+end
 
+-- Nvim-web-Devicon
+require'nvim-web-devicons'.setup {
+ override = {
+  zsh = {
+    icon = "",
+    color = "#428850",
+    cterm_color = "65",
+    name = "Zsh"
+  }
+ };
+ color_icons = true;
+ default = true;
+ strict = true;
+ override_by_filename = {
+  [".gitignore"] = {
+    icon = "",
+    color = "#f1502f",
+    name = "Gitignore"
+  }
+ };
+ override_by_extension = {
+  ["log"] = {
+    icon = "",
+    color = "#81e043",
+    name = "Log"
+  }
+ };
+}
 
-nnoremap st :<C-u>tabnew<CR>
-nnoremap sn gt
-nnoremap sp gT
+-- Overseer
+require('overseer').setup({
+  templates = {"builtin", "user.run_script" },
+})
+
+vim.api.nvim_create_user_command("WatchRun", function()
+  local overseer = require("overseer")
+  overseer.run_template({ name = "run script" }, function(task)
+    if task then
+      task:add_component({ "restart_on_save", paths = {vim.fn.expand("%:p")} })
+      local main_win = vim.api.nvim_get_current_win()
+      overseer.run_action(task, "open vsplit")
+      vim.api.nvim_set_current_win(main_win)
+    else
+      vim.notify("WatchRun not supported for filetype " .. vim.bo.filetype, vim.log.levels.ERROR)
+    end
+  end)
+end, {}
+)
+
+-- Lualine
+require('lualine').setup {
+  options = {
+    icons_enabled = true,
+    theme = 'nightfly',
+    component_separators = { left = '', right = ''},
+    section_separators = { left = '', right = ''},
+    disabled_filetypes = {
+      statusline = {},
+      winbar = {},
+    },
+    ignore_focus = {},
+    always_divide_middle = true,
+    globalstatus = false,
+    refresh = {
+      statusline = 1000,
+      tabline = 1000,
+      winbar = 1000,
+      sections = {
+        lualine_a = {'mode'},
+        lualine_b = {'branch', 'diff', 'diagnostics'},
+        lualine_c = {'filename'},
+        lualine_x = {'filetype'},
+        lualine_y = {'progress'},
+        lualine_z = {'location'}
+      },
+      inactive_sections = {
+        lualine_a = {},
+        lualine_b = {},
+        lualine_c = {'filename'},
+        lualine_x = {'location'},
+        lualine_y = {},
+        lualine_z = {}
+      },
+      tabline = {},
+      winbar = {},
+      inactive_winbar = {},
+      extensions = {}
+    }
+  }
+}

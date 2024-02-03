@@ -132,6 +132,13 @@ autocmd BufRead, BufNewFile *.hql set filetype=sql
 let g:jsonpath_register = '*'
 au FileType json noremap <buffer> <silent> <leader>d :call jsonpath#echo()<CR>
 
+" Nvim-R
+let R_app = "radian"
+let R_cmd = "R"
+let R_hl_term = 0
+let R_args = []  " if you had set any
+let R_bracketed_paste = 1
+
 " toggleterm
 lua << EOF
 local Terminal = require("toggleterm.terminal").Terminal

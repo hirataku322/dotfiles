@@ -42,5 +42,6 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 Plug 'github/copilot.vim'
 Plug 'honza/vim-snippets'
 Plug 'stevearc/overseer.nvim'
+Plug 'mattn/vim-findroot'
 
 call plug#end()

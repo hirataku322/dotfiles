@@ -46,6 +46,7 @@ require("lazy").setup({
   {'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
 })
 
+-- Basic Options
 set.number=true
 set.fenc='utf-8' 
 set.backup=false
@@ -55,32 +56,28 @@ set.hidden=true
 set.showcmd=true 
 set.autochdir=true
 
-set.virtualedit=onemore 
-set.smartindent 
-set.showmatch 
+set.virtualedit='onemore' 
+set.smartindent=true
+set.showmatch=true
 set.laststatus=2 
-set.wildmode=list:longest 
-set.cursorline
+set.wildmode='list:longest'
+set.cursorlin=true
 
+set.list listchars='tab:\▸\-'
+set.expandtab=true
+set.tabstop=2 
+set.shiftwidth=2 
 
-set list listchars=tab:\▸\- 
-set expandtab 
-set tabstop=2 
-set shiftwidth=2 
+set.ignorecase=true
+set.smartcase=true
+set.incsearch=true
+set.wrapscan=true
+set.hlsearch=true
 
+set.clipboard=unnamedplus
+-- set.clipboard+=unnamed
 
-set ignorecase 
-set smartcase 
-set incsearch 
-set wrapscan 
-set hlsearch 
-
-
-set clipboard=unnamedplus
-set clipboard+=unnamed
-
-set helplang=ja,en
-set history=1000
+set.history=1000
 
 nnoremap <silent> <C-j> :bprev<CR>
 nnoremap <silent> <C-k> :bnext<CR>

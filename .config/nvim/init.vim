@@ -50,6 +50,7 @@ set history=1000
 
 nnoremap <silent> <C-j> :bprev<CR>
 nnoremap <silent> <C-k> :bnext<CR>
+nnoremap sd :bd<CR>
 
 "折り返し時に表示行単位での移動できるようにする
 nnoremap j gj
@@ -86,8 +87,9 @@ sunmap e
 sunmap ge
 
 " Telecsope
-nnoremap <C-p> <cmd>Telescope find_files<cr>
-nnoremap <leader>jg <cmd>Telescope live_grep<cr>
+let g:rooter_patterns = ['.git', '.svn', 'package.json', '!node_modules']
+nnoremap <expr> <C-p> ':Telescope find_files cwd='.FindRootDirectory().'/<cr>'
+nnoremap <expr> <leader>jg ':Telescope live_grep cwd='.FindRootDirectory().'/<cr>'
 nnoremap <leader>jb <cmd>Telescope buffers<cr>
 nnoremap <leader>jh <cmd>Telescope help_tags<cr>
 
@@ -123,6 +125,11 @@ nmap ga <Plug>(EasyAlign)
 
 " autocmd
 autocmd BufRead, BufNewFile *.hql set filetype=sql
+
+" jsonpath
+" Optionally copy path to a named register (* in this case) when calling :JsonPath
+let g:jsonpath_register = '*'
+au FileType json noremap <buffer> <silent> <leader>d :call jsonpath#echo()<CR>
 
 " toggleterm
 lua << EOF
@@ -202,6 +209,19 @@ require('lualine').setup {
       statusline = 1000,
       tabline = 1000,
       winbar = 1000,
+require('telescope').setup{
+  defaults = {
+    vimgrep_arguments = {
+      'rg',
+      '--color=never',
+      '--no-heading',
+      '--with-filename',
+      '--line-number',
+      '--column',
+      '--smart-case',
+      '--hidden',
+      '--glob',  -- this flag allows you to hide exclude these files and folders from your search 👇
+      '!{**/.git/*,**/node_modules/*,**/package-lock.json,**/yarn.lock, *.DS_Store}', 
     }
   },
   sections = {
@@ -224,5 +244,6 @@ require('lualine').setup {
   winbar = {},
   inactive_winbar = {},
   extensions = {}
+  }
 }
 EOF

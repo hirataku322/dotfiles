@@ -190,7 +190,25 @@ vim.api.nvim_create_user_command("WatchRun", function()
       vim.notify("WatchRun not supported for filetype " .. vim.bo.filetype, vim.log.levels.ERROR)
     end
   end)
-end, {})
+end, {}
+)
+
+require('telescope').setup{
+  defaults = {
+    vimgrep_arguments = {
+      'rg',
+      '--color=never',
+      '--no-heading',
+      '--with-filename',
+      '--line-number',
+      '--column',
+      '--smart-case',
+      '--hidden',
+      '--glob',  -- this flag allows you to hide exclude these files and folders from your search 👇
+      '!{**/.git/*,**/node_modules/*,**/package-lock.json,**/yarn.lock, *.DS_Store}', 
+    }
+  },
+}
 
 require('lualine').setup {
   options = {
@@ -209,21 +227,6 @@ require('lualine').setup {
       statusline = 1000,
       tabline = 1000,
       winbar = 1000,
-require('telescope').setup{
-  defaults = {
-    vimgrep_arguments = {
-      'rg',
-      '--color=never',
-      '--no-heading',
-      '--with-filename',
-      '--line-number',
-      '--column',
-      '--smart-case',
-      '--hidden',
-      '--glob',  -- this flag allows you to hide exclude these files and folders from your search 👇
-      '!{**/.git/*,**/node_modules/*,**/package-lock.json,**/yarn.lock, *.DS_Store}', 
-    }
-  },
   sections = {
     lualine_a = {'mode'},
     lualine_b = {'branch', 'diff', 'diagnostics'},

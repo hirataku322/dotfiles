@@ -24,7 +24,7 @@ options(radian.auto_match = TRUE)
 options(radian.auto_suggest = FALSE)
 
 # highlight matching bracket
-options(radian.highlight_matching_bracket = TRUE)
+options(radian.highlight_matching_bracket = FALSE)
 
 # auto indentation for new line and curly braces
 options(radian.auto_indentation = TRUE)

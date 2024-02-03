@@ -1,3 +1,5 @@
+require('plugin')
+
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ','
 

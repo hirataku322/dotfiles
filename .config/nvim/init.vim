@@ -8,6 +8,7 @@ lua require("toggleterm").setup()
 lua require('telescope').load_extension('fzf')
 
 let mapleader = "\<Space>"
+let maplocalleader = ","
 syntax enable 
 
 "setting
@@ -133,6 +134,11 @@ let g:jsonpath_register = '*'
 au FileType json noremap <buffer> <silent> <leader>d :call jsonpath#echo()<CR>
 
 " Nvim-R
+let R_vsplit = 1
+let R_assign = 0
+let R_nvimpager = "horizontal"
+let R_objbr_place = "console,right"
+let R_objbr_opendf = 0
 let R_app = "radian"
 let R_cmd = "R"
 let R_hl_term = 0

@@ -43,6 +43,8 @@ Plug 'honza/vim-snippets'
 Plug 'stevearc/overseer.nvim'
 Plug 'airblade/vim-rooter'
 Plug 'mogelbrod/vim-jsonpath'
+
+" R
 Plug 'jalvesaq/Nvim-R'
 
 call plug#end()

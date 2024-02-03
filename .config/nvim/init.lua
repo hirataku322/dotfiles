@@ -61,9 +61,10 @@ set.smartindent=true
 set.showmatch=true
 set.laststatus=2 
 set.wildmode='list:longest'
-set.cursorlin=true
+set.cursorline=true
 
-set.list listchars='tab:\▸\-'
+set.list=true
+set.listchars='tab:▸-'
 set.expandtab=true
 set.tabstop=2 
 set.shiftwidth=2 
@@ -74,7 +75,7 @@ set.incsearch=true
 set.wrapscan=true
 set.hlsearch=true
 
-set.clipboard=unnamedplus
--- set.clipboard+=unnamed
+set.clipboard='unnamed'
+set.clipboard:append{'unnamedplus'}
 
 set.history=1000

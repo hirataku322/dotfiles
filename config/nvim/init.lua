@@ -75,7 +75,8 @@ map('n', '<C-p>', ':Telescope find_files cwd=".FindRootDirectory()."<CR>', optio
 map('n', '<leader>jg', ':Telescope live_grep cwd=".FindRootDirectory()."<CR>', options)
 map('n', '<leader>jb', ':Telescope buffers<CR>', options)
 map('n', '<leader>jh', ':Telescope help_tags<CR>', options)
-map("n", "<leader>lg", "<cmd>lua _lazygit_toggle()<CR>", options)
+
+map("n", "<C-n>", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 
 -- Nvim-R
 vim.g['R_vsplit'] = 1
@@ -112,7 +113,7 @@ require('telescope').setup{
       '--smart-case',
       '--hidden',
       '--glob',
-      '!{**/.git/*,**/node_modules/*,**/package-lock.json,**/yarn.lock, *.DS_Store}'
+      '!{**/.git/*,**/node_modules/*,**/package-lock.json,**/yarn.lock, .DS_Store}'
     }
   },
 }
@@ -220,3 +221,6 @@ require('lualine').setup {
     }
   }
 }
+
+-- Oil
+require("oil").setup()

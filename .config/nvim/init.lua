@@ -88,6 +88,14 @@ vim.g['R_cmd'] = 'R'
 vim.g['R_hl_term'] = 0
 vim.g['R_bracketed_paste'] = 1
 
+-- Color Scheme
+set.termguicolors=true
+vim.g.nightflyTransparent = true
+vim.cmd[[colorscheme nightfly]]
+
+-- Comment
+require('Comment').setup()
+
 -- Telecsope
 vim.g['findroot_not_for_subdir'] = 0
 vim.g['rooter_patterns'] = {'.git', '.svn', 'package.json', '!node_modules'}

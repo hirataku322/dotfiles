@@ -17,8 +17,7 @@ require("lazy").setup({
   'numToStr/Comment.nvim',
 
   -- Theme
-  -- 'sainnhe/gruvbox-material' ,
-  'folke/tokyonight.nvim',
+  'sainnhe/gruvbox-material' ,
   'sheerun/vim-polyglot', -- old syntax highlighting
   { "bluz71/vim-nightfly-colors", name = "nightfly", lazy = false, priority = 1000 },
 

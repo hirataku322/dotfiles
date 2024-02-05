@@ -26,8 +26,7 @@ require("lazy").setup({
   -- Status Line
   'nvim-lualine/lualine.nvim',
   'nvim-tree/nvim-web-devicons',
-  {'akinsho/bufferline.nvim', version = "*"},
-
+  {'akinsho/bufferline.nvim', version = "*", dependencies = 'nvim-tree/nvim-web-devicons'}
   -- Filer
   {
     'stevearc/oil.nvim',

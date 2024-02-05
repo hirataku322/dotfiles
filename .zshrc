@@ -1,6 +1,7 @@
 # initialize
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 eval "$(starship init zsh)"
+. ~/z
 
 # history
 export HISTFILE=${HOME}/.zsh_history # 保存先
@@ -13,6 +14,7 @@ setopt extended_history #share_historyでもOK
 # basic
 alias mkdir="mkdir -p"
 alias cp='cp -r'
+alias cd='cd -P'
 alias ls='exa -F1  --sort=type'
 alias ll='ls -la --no-user --no-permissions --time-style long-iso'
 alias wc='wc -l'
@@ -78,28 +80,6 @@ man() {
 fpath+=~/.zfunc
 autoload -Uz compinit && compinit
 
-# docker
-dps() {
-  local container
-  container="$(docker ps -a | sed -e '1d' | fzf --height 40% --reverse | awk '{print $1}')"
-  if [ -n "${container}" ]; then
-    echo 'copying container-id...'
-    echo ${container} | tr -d '\n' | pbcopy
-  fi
-}
-
-drm() {
-  docker ps -a | sed 1d | fzf -q "$1" --no-sort -m --tac | awk '{ print $1 }' | xargs -r docker rm -f
-}
-
-dlogs() {
-  local container
-  container="$(docker ps -a -f status=running | sed -e '1d' | fzf --height 40% --reverse | awk '{print $1}')"
-  if [ -n "${container}" ]; then
-    docker logs -f --tail 100 ${container}
-  fi
-}
-
 # auto suggestions
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-bindkey '^k' autosuggest-accept
+bindkey '\t' autosuggest-accept

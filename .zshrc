@@ -1,7 +1,7 @@
 # initialize
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 eval "$(starship init zsh)"
-. ~/z
+. ~/ghq/github.com/rupa/z/z.sh
 
 # history
 export HISTFILE=${HOME}/.zsh_history # 保存先
@@ -23,28 +23,13 @@ alias history='history -id'
 
 # git
 alias gp="git push origin"
-alias gp2="git push -u origin HEAD"
 alias gpl="git pull origin"
-alias gc="git commit -m"
-alias ga="git add ."
-alias gac="git add -A && git commit"
-alias gacm="git add -A && git commit -ammend"
-alias gco="git checkout"
-alias gcob="git checkout -b"
-alias gs="git status"
-alias gl="git plog"
-alias gm="git merge"
-alias gb="git branch"
-alias cdg='cd "$(git rev-parse --show-toplevel)"'
 alias ghb="gh browse"
-alias ghp="gh pr create -w"
-alias ghqr='cd $(ghq list -p | fzf)'
+alias ghr='cd $(ghq list -p | fzf)'
 alias lg='lazygit'
 
 alias v="nvim"
-alias vim="nvim"
 alias zs="nvim ~/.zshrc && source ~/.zshrc"
-alias zshrc='zs'
 
 alias q="q -tH"
 alias w3m="w3m -dump -cols 9999"

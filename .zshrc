@@ -67,4 +67,4 @@ autoload -Uz compinit && compinit
 
 # auto suggestions
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-bindkey '\t' autosuggest-accept
+bindkey '^k' autosuggest-accept

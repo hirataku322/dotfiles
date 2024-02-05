@@ -1,5 +1,8 @@
 .DS_Store
 *.json
+*.svg
+*.applescript
+*.png
 
 .config/tmux/plugins
 .config/alacritty/themes

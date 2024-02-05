@@ -17,7 +17,6 @@ require("lazy").setup({
   'numToStr/Comment.nvim',
 
   -- Theme
-  -- 'sainnhe/gruvbox-material' ,
   'folke/tokyonight.nvim',
   'sheerun/vim-polyglot', -- old syntax highlighting
   { "bluz71/vim-nightfly-colors", name = "nightfly", lazy = false, priority = 1000 },
@@ -25,7 +24,14 @@ require("lazy").setup({
   'nvim-lualine/lualine.nvim',
   'nvim-tree/nvim-web-devicons',
 
-  'lambdalisue/fern.vim',
+  -- Filer
+  {
+    'stevearc/oil.nvim',
+    opts = {},
+    -- Optional dependencies
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+  },
+  -- 'lambdalisue/fern.vim',
   -- 'lambdalisue/nerdfont.vim',
   -- 'lambdalisue/fern-renderer-nerdfont.vim',
   -- 'lambdalisue/glyph-palette.vim',

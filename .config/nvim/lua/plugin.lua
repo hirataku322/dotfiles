@@ -12,17 +12,21 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
+  -- Basic
   'tpope/vim-surround',
   'easymotion/vim-easymotion',
   'numToStr/Comment.nvim',
+  'github/copilot.vim',
 
   -- Theme
   'folke/tokyonight.nvim',
   'sheerun/vim-polyglot', -- old syntax highlighting
   { "bluz71/vim-nightfly-colors", name = "nightfly", lazy = false, priority = 1000 },
 
+  -- Status Line
   'nvim-lualine/lualine.nvim',
   'nvim-tree/nvim-web-devicons',
+  {'akinsho/bufferline.nvim', version = "*"},
 
   -- Filer
   {
@@ -31,17 +35,15 @@ require("lazy").setup({
     -- Optional dependencies
     dependencies = { "nvim-tree/nvim-web-devicons" },
   },
-  -- 'lambdalisue/fern.vim',
-  -- 'lambdalisue/nerdfont.vim',
-  -- 'lambdalisue/fern-renderer-nerdfont.vim',
-  -- 'lambdalisue/glyph-palette.vim',
-
-  'github/copilot.vim',
-  'stevearc/overseer.nvim',
   'airblade/vim-rooter',
+
+  -- Telescope
+  { 'nvim-telescope/telescope.nvim', tag = '0.1.5', dependencies = { 'nvim-lua/plenary.nvim' }},
+  {'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+
+  -- Other
+  'stevearc/overseer.nvim',
   'mogelbrod/vim-jsonpath',
   'jalvesaq/Nvim-R',
   {'akinsho/toggleterm.nvim', versoin = '*', config = true },
-  { 'nvim-telescope/telescope.nvim', tag = '0.1.5', dependencies = { 'nvim-lua/plenary.nvim' }},
-  {'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
 })

@@ -80,7 +80,6 @@ map('n', '<leader>jh', ':Telescope help_tags<CR>', options)
 
 -- BufferLine
 map('n', 'gb', '<CMD>BufferLinePick<CR>')
-map('n', '<leader>ts', '<CMD>BufferLinePickClose<CR>')
 map('n', '<S-l>', '<CMD>BufferLineCycleNext<CR>')
 map('n', '<S-h>', '<CMD>BufferLineCyclePrev<CR>')
 map('n', ']b', '<CMD>BufferLineMoveNext<CR>')

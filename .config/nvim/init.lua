@@ -47,8 +47,10 @@ map('n', 'k', 'gk', options)
 map('n', 'j', 'gj', options)
 map('n', '<C-c>', '<ESC>', options)
 map('v', '<C-c>', '<ESC>', options)
-map('n', '<C-l>', ':nohlsearch<CR><C-l>', options)
+map('n', '<C-l>', ':nohlsearch<CR>', options)
+map('n', '<C-r>', ':w<CR>:luafile %<CR>:nohlsearch<CR>', options)
 
+-- Window
 map('n', 'ss', ':sp<CR>', options)
 map('n', 'sv', ':vs<CR>', options)
 map('n', 'sq', ':q!<CR>', options)
@@ -65,18 +67,31 @@ map('n', 's<', '<C-w><', options)
 map('n', 's+', '<C-w>+', options)
 map('n', 's-', '<C-w>-', options)
 
+-- Buffer
 map('n', '<C-j>', ':bprev<CR>', options)
 map('n', '<C-k>', ':bnext<CR>', options)
 map('n', 'sd', ':bd<CR>', options)
 
-map('n', '<leader>f', '<Plug>(easymotion-bd-w)', options)
-
+-- Telescope
 map('n', '<C-p>', ':Telescope find_files cwd=".FindRootDirectory()."<CR>', options)
 map('n', '<leader>jg', ':Telescope live_grep cwd=".FindRootDirectory()."<CR>', options)
 map('n', '<leader>jb', ':Telescope buffers<CR>', options)
 map('n', '<leader>jh', ':Telescope help_tags<CR>', options)
 
+-- BufferLine
+map('n', 'gb', '<CMD>BufferLinePick<CR>')
+map('n', '<leader>ts', '<CMD>BufferLinePickClose<CR>')
+map('n', '<S-l>', '<CMD>BufferLineCycleNext<CR>')
+map('n', '<S-h>', '<CMD>BufferLineCyclePrev<CR>')
+map('n', ']b', '<CMD>BufferLineMoveNext<CR>')
+map('n', '[b', '<CMD>BufferLineMovePrev<CR>')
+map('n', 'gs', '<CMD>BufferLineSortByDirectory<CR>')
+
+-- Other
+map("n", "<C-t>", ":ToggleTerm direction=float<CR>", options)
 map("n", "<C-n>", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+map('n', '<leader>f', '<Plug>(easymotion-bd-w)', options)
+map("n", "<leader>lg", "<cmd>lua _lazygit_toggle()<CR>", { noremap = true, silent = true })
 
 -- Nvim-R
 vim.g['R_vsplit'] = 1
@@ -129,7 +144,6 @@ local lazygit = Terminal:new({
 function _lazygit_toggle()
 	lazygit:toggle()
 end
-vim.api.nvim_set_keymap("n", "<leader>lg", "<cmd>lua _lazygit_toggle()<CR>", { noremap = true, silent = true })
 
 -- Nvim-web-Devicon
 require'nvim-web-devicons'.setup {
@@ -227,10 +241,3 @@ require("oil").setup()
 
 -- Buffer Line
 require('bufferline').setup()
-vim.keymap.set('n', 'gb', '<CMD>BufferLinePick<CR>')
-vim.keymap.set('n', '<leader>ts', '<CMD>BufferLinePickClose<CR>')
-vim.keymap.set('n', '<S-l>', '<CMD>BufferLineCycleNext<CR>')
-vim.keymap.set('n', '<S-h>', '<CMD>BufferLineCyclePrev<CR>')
-vim.keymap.set('n', ']b', '<CMD>BufferLineMoveNext<CR>')
-vim.keymap.set('n', '[b', '<CMD>BufferLineMovePrev<CR>')
-vim.keymap.set('n', 'gs', '<CMD>BufferLineSortByDirectory<CR>')

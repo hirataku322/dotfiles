@@ -133,7 +133,7 @@ require('telescope').setup{
   },
 }
 
--- Toggleterm
+-- LazyGit
 local Terminal = require("toggleterm.terminal").Terminal
 local lazygit = Terminal:new({
 	cmd = "lazygit",

@@ -88,10 +88,20 @@ map('n', '[b', '<CMD>BufferLineMovePrev<CR>')
 map('n', 'gs', '<CMD>BufferLineSortByDirectory<CR>')
 
 -- Other
-map("n", "<C-t>", ":ToggleTerm direction=float<CR>", options)
 map("n", "<C-n>", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 map('n', '<leader>f', '<Plug>(easymotion-bd-w)', options)
 map("n", "<leader>lg", "<cmd>lua _lazygit_toggle()<CR>", { noremap = true, silent = true })
+
+-- ToggleTerm
+map("n", "<C-h>", ":ToggleTerm direction=float<CR>", options)
+
+function _G.set_terminal_keymaps()
+  local opts = {buffer = 0}
+  map('t', '<C-h>', [[<Cmd>wincmd h<CR>]], opts)
+end
+
+-- if you only want these mappings for toggle term use term://*toggleterm#* instead
+vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
 
 -- Nvim-R
 vim.g['R_vsplit'] = 1

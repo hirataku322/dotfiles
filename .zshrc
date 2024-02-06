@@ -20,6 +20,7 @@ alias ll='ls -la --no-user --no-permissions --time-style long-iso'
 alias wc='wc -l'
 alias head='head -n 10'
 alias history='history -id'
+alias ex="exit"
 
 # git
 alias gp="git push origin"

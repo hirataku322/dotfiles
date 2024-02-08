@@ -73,8 +73,8 @@ map('n', '<C-k>', ':bnext<CR>', options)
 map('n', 'sd', ':bd<CR>', options)
 
 -- Telescope
-map('n', '<C-p>', ':Telescope find_files cwd=".FindRootDirectory()."<CR>', options)
-map('n', '<leader>jg', ':Telescope live_grep cwd=".FindRootDirectory()."<CR>', options)
+map('n', '<C-p>', ':Telescope find_files<CR>', options)
+map('n', '<leader>jg', ':Telescope live_grep<CR>', options)
 map('n', '<leader>jb', ':Telescope buffers<CR>', options)
 map('n', '<leader>jh', ':Telescope help_tags<CR>', options)
 

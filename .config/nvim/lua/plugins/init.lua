@@ -45,4 +45,32 @@ require("lazy").setup({
   'mogelbrod/vim-jsonpath',
   'jalvesaq/Nvim-R',
   {'akinsho/toggleterm.nvim', versoin = '*', config = true },
+
+  -- Lazy
+  {
+    "jackMort/ChatGPT.nvim",
+      event = "VeryLazy",
+      config = function()
+        require("chatgpt").setup()
+      end,
+      dependencies = {
+        "MunifTanjim/nui.nvim",
+        "nvim-lua/plenary.nvim",
+        "folke/trouble.nvim",
+        "nvim-telescope/telescope.nvim"
+      }
+  }
+  {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    init = function()
+      vim.o.timeout = true
+      vim.o.timeoutlen = 300
+    end,
+    opts = {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+    }
+  }
 })

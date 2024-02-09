@@ -59,7 +59,7 @@ require("lazy").setup({
         "folke/trouble.nvim",
         "nvim-telescope/telescope.nvim"
       }
-  }
+  },
   {
     "folke/which-key.nvim",
     event = "VeryLazy",

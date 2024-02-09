@@ -69,3 +69,5 @@ autoload -Uz compinit && compinit
 # auto suggestions
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 bindkey '^k' autosuggest-accept
+
+eval "$(op completion zsh)"; compdef _op op

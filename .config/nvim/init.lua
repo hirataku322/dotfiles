@@ -73,7 +73,7 @@ map('n', '<C-k>', ':bnext<CR>', options)
 map('n', 'sd', ':bd<CR>', options)
 
 -- Telescope
-map('n', '<C-p>', ':Telescope find_files<CR>', options)
+map('n', '<C-p>', ':Telescope find_files hidden=true<CR>', options)
 map('n', '<leader>jg', ':Telescope live_grep<CR>', options)
 map('n', '<leader>jb', ':Telescope buffers<CR>', options)
 map('n', '<leader>jh', ':Telescope help_tags<CR>', options)
@@ -87,9 +87,9 @@ map('n', '[b', '<CMD>BufferLineMovePrev<CR>')
 map('n', 'gs', '<CMD>BufferLineSortByDirectory<CR>')
 
 -- Other
-map("n", "<C-n>", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+map("n", "<C-n>", "<CMD>Oil<CR>")
 map('n', '<leader>f', '<Plug>(easymotion-bd-w)', options)
-map("n", "<leader>lg", "<cmd>lua _lazygit_toggle()<CR>", { noremap = true, silent = true })
+map("n", "<leader>lg", "<cmd>lua _lazygit_toggle()<CR>", options)
 
 -- ToggleTerm
 map("n", "<C-h>", ":ToggleTerm direction=float<CR>", options)
@@ -125,22 +125,40 @@ require('Comment').setup()
 vim.g['findroot_not_for_subdir'] = 0
 vim.g['rooter_patterns'] = {'.git', '.svn', 'package.json', '!node_modules'}
 
-require('telescope').setup{
+require("telescope").setup({
   defaults = {
+    file_ignore_patterns = {
+      -- 検索から除外するものを指定
+      "^.git/",
+      "^.cache/",
+      "^Library/",
+      "Parallels",
+      "^Movies",
+      "^Music",
+    },
     vimgrep_arguments = {
-      'rg',
-      '--color=never',
-      '--no-heading',
-      '--with-filename',
-      '--line-number',
-      '--column',
-      '--smart-case',
-      '--hidden',
-      '--glob',
-      '!{**/.git/*,**/node_modules/*,**/package-lock.json,**/yarn.lock, .DS_Store}'
-    }
+      -- ripggrepコマンドのオプション
+      "rg",
+      "--color=never",
+      "--no-heading",
+      "--with-filename",
+      "--line-number",
+      "--column",
+      "--smart-case",
+      "-uu",
+    },
   },
-}
+  extensions = {
+    -- ソート性能を大幅に向上させるfzfを使う
+    fzf = {
+      fuzzy = true,
+      override_generic_sorter = true,
+      override_file_sorter = true,
+      case_mode = "smart_case",
+    },
+  },
+})
+require("telescope").load_extension("fzf")
 
 -- LazyGit
 local Terminal = require("toggleterm.terminal").Terminal

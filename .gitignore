@@ -3,6 +3,7 @@
 *.svg
 *.applescript
 *.png
+*.key
 
 .config/tmux/plugins
 .config/alacritty/themes

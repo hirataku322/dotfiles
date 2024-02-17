@@ -46,20 +46,19 @@ require("lazy").setup({
   'jalvesaq/Nvim-R',
   {'akinsho/toggleterm.nvim', versoin = '*', config = true },
 
-  -- Lazy
-  {
-    "jackMort/ChatGPT.nvim",
-      event = "VeryLazy",
-      config = function()
-        require("chatgpt").setup()
-      end,
-      dependencies = {
-        "MunifTanjim/nui.nvim",
-        "nvim-lua/plenary.nvim",
-        "folke/trouble.nvim",
-        "nvim-telescope/telescope.nvim"
-      }
-  },
+  -- {
+  --   "jackMort/ChatGPT.nvim",
+  --     event = "VeryLazy",
+  --     config = function()
+  --       require("chatgpt").setup()
+  --     end,
+  --     dependencies = {
+  --       "MunifTanjim/nui.nvim",
+  --       "nvim-lua/plenary.nvim",
+  --       "folke/trouble.nvim",
+  --       "nvim-telescope/telescope.nvim"
+  --     }
+  -- },
   {
     "folke/which-key.nvim",
     event = "VeryLazy",

@@ -269,7 +269,7 @@ require("oil").setup()
 -- Buffer Line
 require('bufferline').setup()
 
--- ChatGPT.nvim
-require("chatgpt").setup({
-  api_key_cmd = "op read op://Personal/OpenAI/key --no-newline"
-})
+-- -- ChatGPT.nvim
+-- require("chatgpt").setup({
+--   api_key_cmd = "op read op://Personal/OpenAI/key --no-newline"
+-- })

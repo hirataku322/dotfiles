@@ -38,10 +38,6 @@ alias to_tsv="awk '{ OFS=\"\t\" ; \$1=\$1 ; print \$0 }' $1"
 alias bl="brew list"
 alias r="radian"
 
-mkdircd() {
-  mkdir -p "$@" && eval cd "\"\$$#\"";
-}
-
 fd() {
   local dir
   dir=$(find ${1:-.} -path '*/\.*' -prune \

@@ -68,6 +68,8 @@ map('n', 's+', '<C-w>+', options)
 map('n', 's-', '<C-w>-', options)
 
 -- Buffer
+map('n', '<C-j>', ':bp<CR>', options)
+map('n', '<C-k>', ':bn<CR>', options)
 map('n', 'sd', ':bp|bd#<CR>', options)
 
 -- Telescope

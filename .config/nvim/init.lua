@@ -68,9 +68,7 @@ map('n', 's+', '<C-w>+', options)
 map('n', 's-', '<C-w>-', options)
 
 -- Buffer
-map('n', '<C-j>', ':bprev<CR>', options)
-map('n', '<C-k>', ':bnext<CR>', options)
-map('n', 'sd', ':bd<CR>', options)
+map('n', 'sd', ':bp|bd#<CR>', options)
 
 -- Telescope
 map('n', '<C-p>', ':Telescope find_files hidden=true<CR>', options)

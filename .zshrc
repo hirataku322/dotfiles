@@ -67,3 +67,7 @@ source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 bindkey '^k' autosuggest-accept
 
 eval "$(op completion zsh)"; compdef _op op
+
+# poetry completions
+fpath+=~/.zfunc
+autoload -Uz compinit && compinit

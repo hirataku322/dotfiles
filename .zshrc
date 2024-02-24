@@ -22,13 +22,6 @@ alias head='head -n 10'
 alias history='history -id'
 alias ex="exit"
 
-# git
-alias gp="git push origin"
-alias gpl="git pull origin"
-alias ghb="gh browse"
-alias ghqr='cd $(ghq list -p | fzf)'
-alias lg='lazygit'
-
 alias v="nvim"
 alias zs="nvim ~/.zshrc && source ~/.zshrc"
 
@@ -37,6 +30,19 @@ alias w3m="w3m -dump -cols 9999"
 alias to_tsv="awk '{ OFS=\"\t\" ; \$1=\$1 ; print \$0 }' $1"
 alias bl="brew list"
 alias r="radian"
+
+# git
+alias gp="git push origin"
+alias gpl="git pull origin"
+alias ghb="gh browse"
+alias ghqr='cd $(ghq list -p | fzf)'
+alias lg='lazygit'
+
+# make remote repository and clone it
+ghcr() {
+ gh repo create $@
+ ghq get git@github.com:hirataku322/$1.git
+}
 
 fd() {
   local dir
@@ -71,3 +77,4 @@ eval "$(op completion zsh)"; compdef _op op
 # poetry completions
 fpath+=~/.zfunc
 autoload -Uz compinit && compinit
+

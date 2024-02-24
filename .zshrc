@@ -80,7 +80,7 @@ autoload -Uz compinit && compinit
 
 # docker
 docker_select() {
-  docker ps --format 'table {{ .ID }}\t{{ .Image }}\t{{ .Command }}' | fzf --header-lines=1 --select-1 | awk '{print $1}'
+  docker ps --format 'table {{ .ID }}\t{{ .Image }}\t{{ .Command }}\t{{ .Ports }}' | fzf --header-lines=1 --select-1 | awk '{print $1}'
 }
 
 dst() {

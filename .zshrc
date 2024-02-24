@@ -78,3 +78,15 @@ eval "$(op completion zsh)"; compdef _op op
 fpath+=~/.zfunc
 autoload -Uz compinit && compinit
 
+# docker
+docker_select() {
+  docker ps --format 'table {{ .ID }}\t{{ .Image }}\t{{ .Command }}' | fzf --header-lines=1 --select-1 | awk '{print $1}'
+}
+
+drm() {
+  docker rm $@ $(docker_select)
+}
+
+dst() {
+  docker stop $@ $(docker_select)
+}

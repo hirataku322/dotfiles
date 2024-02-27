@@ -75,7 +75,6 @@ map('n', 'sd', ':bp|bd#<CR>', options)
 -- Telescope
 map('n', '<C-p>', ':Telescope find_files hidden=true<CR>', options)
 map('n', '<leader>jg', ':Telescope live_grep<CR>', options)
-map('n', '<leader>jb', ':Telescope buffers<CR>', options)
 map('n', '<leader>jh', ':Telescope help_tags<CR>', options)
 
 -- BufferLine

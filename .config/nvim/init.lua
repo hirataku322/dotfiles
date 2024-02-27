@@ -74,23 +74,20 @@ map('n', 'sd', ':bp|bd#<CR>', options)
 
 -- Telescope
 function get_git_root()
-  return string.gsub(vim.fn.system("git rev-parse --show-toplevel"), "\n", "")
+  return string.gsub(vim.fn.system("git rev-parse --show-toplevel"), "\n", "")
 end
 
 function find_files()
-  local root = get_git_root()
-  require('telescope.builtin').find_files({cwd = root, hidden=true})
+  require('telescope.builtin').find_files({cwd = get_git_root(), hidden=true})
 end
 
 function live_grep()
-  local root = get_git_root()
-  require('telescope.builtin').live_grep({cwd = root, hidden=true})
+  require('telescope.builtin').live_grep({cwd = get_git_root(), hidden=true})
 end
-
 map('n', '<C-p>', find_files, options)
 map('n', '<leader>jg', live_grep, options)
 map('n', '<leader>jb', require('telescope.builtin').buffers, options)
-map('n', '<leader>jh', ':Telescope help_tags<CR>', options)
+map('n', '<leader>jh', require('telescope.builtin').help_tags, options)
 
 -- BufferLine
 map('n', 'gb', '<CMD>BufferLinePick<CR>')

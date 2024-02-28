@@ -103,11 +103,12 @@ map('n', '<leader>f', '<Plug>(easymotion-bd-w)', options)
 map("n", "<leader>lg", "<cmd>lua _lazygit_toggle()<CR>", options)
 
 -- ToggleTerm
-map("n", "<C-h>", ":ToggleTerm direction=float<CR>", options)
+require("toggleterm").setup{}
+map("n", "<C-h>", ":ToggleTerm direction=horizontal<CR>", options)
 
 function _G.set_terminal_keymaps()
   local opts = {buffer = 0}
-  map('t', '<C-h>', [[<Cmd>wincmd h<CR>]], opts)
+  vim.keymap.set('t', '<C-w>', [[<C-\><C-n><C-w>]], opts)
 end
 
 -- if you only want these mappings for toggle term use term://*toggleterm#* instead

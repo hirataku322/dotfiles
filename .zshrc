@@ -86,3 +86,5 @@ docker_select() {
 dst() {
   docker stop $@ $(docker_select)
 }
+
+alias dps='docker ps'

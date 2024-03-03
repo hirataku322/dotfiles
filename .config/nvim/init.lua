@@ -222,8 +222,3 @@ require("oil").setup()
 require'nvim-web-devicons'.setup {}
 require('bufferline').setup()
 require('Comment').setup()
-
--- -- ChatGPT.nvim
--- require("chatgpt").setup({
---   api_key_cmd = "op read op://Personal/OpenAI/key --no-newline"
--- })

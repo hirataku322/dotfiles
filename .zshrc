@@ -87,4 +87,8 @@ dst() {
   docker stop $@ $(docker_select)
 }
 
+drm() {
+  docker rm $@ $(docker_select)
+}
+
 alias dps='docker ps'

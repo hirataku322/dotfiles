@@ -46,7 +46,6 @@ set.history=1000
 map('n', 'k', 'gk', options)
 map('n', 'j', 'gj', options)
 map({'i', 'v'}, '<C-c>', '<ESC>', options)
-map('v', '<C-c>', '<ESC>', options)
 map('n', '<C-l>', ':nohlsearch<CR>', options)
 map('n', '<C-r>', ':w<CR>:luafile %<CR>:nohlsearch<CR>', options)
 

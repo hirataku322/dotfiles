@@ -113,17 +113,6 @@ end
 -- if you only want these mappings for toggle term use term://*toggleterm#* instead
 vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
 
--- Nvim-R
-vim.g['R_vsplit'] = 1
-vim.g['R_assign'] = 0
-vim.g['R_nvimpager'] = 'horizontal'
-vim.g['R_objbr_place'] = 'console,right'
-vim.g['R_objbr_opendf'] = 0
-vim.g['R_app'] = 'radian'
-vim.g['R_cmd'] = 'R'
-vim.g['R_hl_term'] = 0
-vim.g['R_bracketed_paste'] = 1
-
 -- Color Scheme
 set.termguicolors=true
 vim.g.nightflyTransparent = true

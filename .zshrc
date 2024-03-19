@@ -92,6 +92,8 @@ drm() {
 }
 
 alias dps='docker ps'
+alias dcu='docker compose up -d'
+alias dcd='docker compose down'
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/hirotoyamakawa/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/hirotoyamakawa/google-cloud-sdk/path.zsh.inc'; fi

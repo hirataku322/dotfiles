@@ -1,0 +1,23 @@
+
+-- plugin系のやつ
+function get_git_root()
+  return string.gsub(vim.fn.system("git rev-parse --show-toplevel"), "\n", "")
+end
+
+function find_files()
+  require('telescope.builtin').find_files({cwd = get_git_root(), hidden=true})
+end
+
+function live_grep()
+  require('telescope.builtin').live_grep({cwd = get_git_root(), hidden=true})
+end
+keymap.set('n', '<C-p>', find_files)
+
+-- using leader
+keymap.set("n", "<C-n>", "<CMD>Oil<CR>")
+keymap.set('n', '<leader>jg', live_grep)
+keymap.set('n', '<leader>jb', require('telescope.builtin').buffers)
+keymap.set('n', '<leader>jh', require('telescope.builtin').help_tags)
+keymap.set('n', '<leader>f', '<Plug>(easymotion-bd-w)')
+keymap.set("n", "<leader>lg", "<cmd>lua _lazygit_toggle()<CR>")
+keymap.set("n", "<C-h>", ":ToggleTerm direction=horizontal<CR>")

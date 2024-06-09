@@ -11,8 +11,6 @@ return {
   { "bluz71/vim-nightfly-colors", name = "nightfly", lazy = false, priority = 1000 },
 
   -- Status Line
-  'nvim-lualine/lualine.nvim',
-  'nvim-tree/nvim-web-devicons',
   {'akinsho/bufferline.nvim', version = "*", dependencies = 'nvim-tree/nvim-web-devicons'},
 
   -- Telescope

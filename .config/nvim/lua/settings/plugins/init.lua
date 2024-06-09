@@ -17,7 +17,6 @@ return {
   {'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
 
   -- Other
-  'stevearc/overseer.nvim',
   'mogelbrod/vim-jsonpath',
   'jalvesaq/Nvim-R',
   {'akinsho/toggleterm.nvim', versoin = '*', config = true },

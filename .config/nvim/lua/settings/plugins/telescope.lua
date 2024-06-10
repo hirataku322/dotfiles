@@ -2,7 +2,8 @@ return {
   'nvim-telescope/telescope.nvim',
   tag = '0.1.5',
   dependencies = { 
-    'nvim-lua/plenary.nvim' 
+    'nvim-lua/plenary.nvim' ,
+    {'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
   },
   config = function()
     vim.g['findroot_not_for_subdir'] = 0

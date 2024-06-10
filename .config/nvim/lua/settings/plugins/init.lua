@@ -6,7 +6,6 @@ return {
   'github/copilot.vim',
 
   -- Theme
-  'folke/tokyonight.nvim',
   'sheerun/vim-polyglot', -- old syntax highlighting
   { "bluz71/vim-nightfly-colors", name = "nightfly", lazy = false, priority = 1000 },
 

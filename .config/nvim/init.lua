@@ -206,7 +206,12 @@ require('lualine').setup {
   }
 }
 
-require("oil").setup()
+require("oil").setup({
+    view_options = {
+      show_hidden = true
+    }
+  }
+)
 require'nvim-web-devicons'.setup {}
 require('bufferline').setup()
 require('Comment').setup()

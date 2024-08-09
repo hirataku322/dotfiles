@@ -4,12 +4,12 @@ eval "$(starship init zsh)"
 . ~/ghq/github.com/rupa/z/z.sh
 
 # history
-export HISTFILE=${HOME}/.zsh_history # 保存先
-export HISTSIZE=1000 # メモリに保存される履歴の件数
-export SAVEHIST=1000 # 履歴ファイルに保存される履歴の件数
-setopt hist_ignore_dups # 重複を記録しない
-setopt EXTENDED_HISTORY # 開始と終了を記録
-setopt extended_history #share_historyでもOK
+export HISTFILE=${HOME}/.zsh_history 
+export HISTSIZE=1000 
+export SAVEHIST=1000 
+setopt hist_ignore_dups 
+setopt EXTENDED_HISTORY 
+setopt extended_history 
 
 # basic
 alias mkdir="mkdir -p"
@@ -82,9 +82,3 @@ drm() {
 alias dps='docker ps'
 alias dcu='docker compose up -d'
 alias dcd='docker compose down'
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/hirotoyamakawa/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/hirotoyamakawa/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/hirotoyamakawa/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/hirotoyamakawa/google-cloud-sdk/completion.zsh.inc'; fi

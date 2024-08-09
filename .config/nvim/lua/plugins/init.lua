@@ -19,7 +19,6 @@ require("lazy").setup({
   'github/copilot.vim',
 
   -- Theme
-  'folke/tokyonight.nvim',
   'sheerun/vim-polyglot', -- old syntax highlighting
   { "bluz71/vim-nightfly-colors", name = "nightfly", lazy = false, priority = 1000 },
 
@@ -40,35 +39,5 @@ require("lazy").setup({
   {'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
 
   -- Other
-  'stevearc/overseer.nvim',
-  'mogelbrod/vim-jsonpath',
-  'jalvesaq/Nvim-R',
   {'akinsho/toggleterm.nvim', versoin = '*', config = true },
-
-  -- {
-  --   "jackMort/ChatGPT.nvim",
-  --     event = "VeryLazy",
-  --     config = function()
-  --       require("chatgpt").setup()
-  --     end,
-  --     dependencies = {
-  --       "MunifTanjim/nui.nvim",
-  --       "nvim-lua/plenary.nvim",
-  --       "folke/trouble.nvim",
-  --       "nvim-telescope/telescope.nvim"
-  --     }
-  -- },
-  {
-    "folke/which-key.nvim",
-    event = "VeryLazy",
-    init = function()
-      vim.o.timeout = true
-      vim.o.timeoutlen = 300
-    end,
-    opts = {
-      -- your configuration comes here
-      -- or leave it empty to use the default settings
-      -- refer to the configuration section below
-    }
-  }
 })

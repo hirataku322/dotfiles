@@ -5,8 +5,8 @@ eval "$(starship init zsh)"
 
 # history
 export HISTFILE=${HOME}/.zsh_history # 保存先
-export HISTSIZE=10000 # メモリに保存される履歴の件数
-export SAVEHIST=100000 # 履歴ファイルに保存される履歴の件数
+export HISTSIZE=1000 # メモリに保存される履歴の件数
+export SAVEHIST=1000 # 履歴ファイルに保存される履歴の件数
 setopt hist_ignore_dups # 重複を記録しない
 setopt EXTENDED_HISTORY # 開始と終了を記録
 setopt extended_history #share_historyでもOK
@@ -17,18 +17,13 @@ alias cp='cp -r'
 alias cd='cd -P'
 alias ls='exa -1a --sort type'
 alias wc='wc -l'
-alias head='head -n 10'
 alias history='history -id'
-alias ex="exit"
 
 alias v="nvim"
 alias zs="nvim ~/.zshrc && source ~/.zshrc"
 
 alias q="q -tH"
 alias w3m="w3m -dump -cols 9999"
-alias to_tsv="awk '{ OFS=\"\t\" ; \$1=\$1 ; print \$0 }' $1"
-alias bl="brew list"
-alias r="radian"
 
 # git
 alias gp="git push origin"
@@ -36,12 +31,6 @@ alias gpl="git pull origin"
 alias ghb="gh browse"
 alias ghqr='cd $(ghq list -p | fzf)'
 alias lg='lazygit'
-
-# make remote repository and clone it
-ghcr() {
- gh repo create $@
- ghq get git@github.com:hirataku322/$1.git
-}
 
 fd() {
   local dir
@@ -63,7 +52,7 @@ man() {
     man "$@"
 }
 
-# completionsを有効にする
+# completions
 fpath+=~/.zfunc
 autoload -Uz compinit && compinit
 

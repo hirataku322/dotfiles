@@ -13,3 +13,5 @@
 .config/gh
 .config/github-copilot
 op
+
+!.config/karabiner/karabiner.json

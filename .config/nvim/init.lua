@@ -9,7 +9,6 @@ local set = vim.opt
 options = {noremap = true}
 
 -- Basic Options
-set.number=true
 set.fenc='utf-8' 
 set.backup=false
 set.swapfile=false 

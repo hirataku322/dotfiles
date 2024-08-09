@@ -15,8 +15,7 @@ setopt extended_history #share_historyでもOK
 alias mkdir="mkdir -p"
 alias cp='cp -r'
 alias cd='cd -P'
-alias ls='exa -F1  --sort=type'
-alias ll='ls -la --no-user --no-permissions --time-style long-iso'
+alias ls='exa -1a --sort type'
 alias wc='wc -l'
 alias head='head -n 10'
 alias history='history -id'

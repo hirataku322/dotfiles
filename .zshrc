@@ -30,6 +30,7 @@ alias gp="git push origin"
 alias gpl="git pull origin"
 alias ghb="gh browse"
 alias ghqr='cd $(ghq list -p | fzf)'
+alias gh='ghqr'
 alias lg='lazygit'
 
 fd() {

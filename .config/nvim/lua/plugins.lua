@@ -25,15 +25,10 @@ require("lazy").setup({
   -- Status Line
   'nvim-lualine/lualine.nvim',
   'nvim-tree/nvim-web-devicons',
-  {'akinsho/bufferline.nvim', version = "*", dependencies = 'nvim-tree/nvim-web-devicons'},
+  { 'akinsho/bufferline.nvim', version = "*", dependencies = 'nvim-tree/nvim-web-devicons'},
 
   -- Filer
-  {
-    'stevearc/oil.nvim',
-    opts = {},
-    -- Optional dependencies
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-  },
+  { 'stevearc/oil.nvim', opts = {}, dependencies = "nvim-tree/nvim-web-devicons"},
 
   -- Telescope
   { 'nvim-telescope/telescope.nvim', tag = '0.1.5', dependencies = { 'nvim-lua/plenary.nvim' }},

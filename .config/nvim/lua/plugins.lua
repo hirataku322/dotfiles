@@ -16,6 +16,7 @@ require("lazy").setup({
   'tpope/vim-surround',
   'easymotion/vim-easymotion',
   'numToStr/Comment.nvim',
+  {'akinsho/toggleterm.nvim', versoin = '*', config = true },
 
   -- Theme
   'sheerun/vim-polyglot', -- old syntax highlighting
@@ -25,6 +26,7 @@ require("lazy").setup({
   'nvim-lualine/lualine.nvim',
   'nvim-tree/nvim-web-devicons',
   {'akinsho/bufferline.nvim', version = "*", dependencies = 'nvim-tree/nvim-web-devicons'},
+
   -- Filer
   {
     'stevearc/oil.nvim',
@@ -37,6 +39,9 @@ require("lazy").setup({
   { 'nvim-telescope/telescope.nvim', tag = '0.1.5', dependencies = { 'nvim-lua/plenary.nvim' }},
   {'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
 
-  -- Other
-  {'akinsho/toggleterm.nvim', versoin = '*', config = true },
+  -- LSP
+  "williamboman/mason.nvim",
+  'williamboman/mason-lspconfig.nvim',
+  'neovim/nvim-lspconfig',
+  'simrat39/rust-tools.nvim',
 })

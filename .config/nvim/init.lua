@@ -1,4 +1,5 @@
 require('plugins')
+require('opts')
 
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ','
@@ -7,39 +8,6 @@ local map = vim.keymap.set
 local set = vim.opt
 
 options = {noremap = true}
-
--- Basic Options
-set.fenc='utf-8' 
-set.backup=false
-set.swapfile=false 
-set.autoread=true 
-set.hidden=true 
-set.showcmd=true 
-set.autochdir=true
-
-set.virtualedit='onemore' 
-set.smartindent=true
-set.showmatch=true
-set.laststatus=2 
-set.wildmode='list:longest'
-set.cursorline=true
-
-set.list=true
-set.listchars='tab:▸-'
-set.expandtab=true
-set.tabstop=2 
-set.shiftwidth=2 
-
-set.ignorecase=true
-set.smartcase=true
-set.incsearch=true
-set.wrapscan=true
-set.hlsearch=true
-
-set.clipboard='unnamed'
-set.clipboard:append{'unnamedplus'}
-
-set.history=1000
 
 -- Mappings
 map('n', 'k', 'gk', options)
@@ -111,11 +79,6 @@ end
 
 -- if you only want these mappings for toggle term use term://*toggleterm#* instead
 vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
-
--- Color Scheme
-set.termguicolors=true
-vim.g.nightflyTransparent = true
-vim.cmd[[colorscheme nightfly]]
 
 -- Telecsope
 vim.g['findroot_not_for_subdir'] = 0

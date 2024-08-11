@@ -31,3 +31,37 @@ vim.keymap.set('n', 's-', '<C-w>-', options)
 vim.keymap.set('n', '<C-j>', ':bp<CR>', options)
 vim.keymap.set('n', '<C-k>', ':bn<CR>', options)
 vim.keymap.set('n', 'sd', ':bp|bd#<CR>', options)
+
+-- Telescope
+function get_git_root()
+  return string.gsub(vim.fn.system("git rev-parse --show-toplevel"), "\n", "")
+end
+
+function find_files()
+  require('telescope.builtin').find_files({cwd = get_git_root(), hidden=true})
+end
+
+function live_grep()
+  require('telescope.builtin').live_grep({cwd = get_git_root(), hidden=true})
+end
+vim.keymap.set('n', '<C-p>', find_files, options)
+vim.keymap.set('n', '<leader>jg', live_grep, options)
+vim.keymap.set('n', '<leader>jb', require('telescope.builtin').buffers, options)
+vim.keymap.set('n', '<leader>jh', require('telescope.builtin').help_tags, options)
+
+-- BufferLine
+vim.keymap.set('n', 'gb', '<CMD>BufferLinePick<CR>')
+vim.keymap.set('n', '<S-l>', '<CMD>BufferLineCycleNext<CR>')
+vim.keymap.set('n', '<S-h>', '<CMD>BufferLineCyclePrev<CR>')
+vim.keymap.set('n', ']b', '<CMD>BufferLineMoveNext<CR>')
+vim.keymap.set('n', '[b', '<CMD>BufferLineMovePrev<CR>')
+vim.keymap.set('n', 'gs', '<CMD>BufferLineSortByDirectory<CR>')
+
+-- Other
+vim.keymap.set("n", "<C-n>", "<CMD>Oil<CR>")
+vim.keymap.set('n', '<leader>f', '<Plug>(easymotion-bd-w)', options)
+vim.keymap.set("n", "<leader>lg", "<cmd>lua _lazygit_toggle()<CR>", options)
+
+-- ToggleTerm
+require("toggleterm").setup{}
+vim.keymap.set("n", "<C-h>", ":ToggleTerm direction=float<CR>", options)

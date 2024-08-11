@@ -2,44 +2,6 @@ require('plug')
 require('opts')
 require('keys')
 
-local map = vim.keymap.set
-
-options = {noremap = true}
-
--- Telescope
-function get_git_root()
-  return string.gsub(vim.fn.system("git rev-parse --show-toplevel"), "\n", "")
-end
-
-function find_files()
-  require('telescope.builtin').find_files({cwd = get_git_root(), hidden=true})
-end
-
-function live_grep()
-  require('telescope.builtin').live_grep({cwd = get_git_root(), hidden=true})
-end
-map('n', '<C-p>', find_files, options)
-map('n', '<leader>jg', live_grep, options)
-map('n', '<leader>jb', require('telescope.builtin').buffers, options)
-map('n', '<leader>jh', require('telescope.builtin').help_tags, options)
-
--- BufferLine
-map('n', 'gb', '<CMD>BufferLinePick<CR>')
-map('n', '<S-l>', '<CMD>BufferLineCycleNext<CR>')
-map('n', '<S-h>', '<CMD>BufferLineCyclePrev<CR>')
-map('n', ']b', '<CMD>BufferLineMoveNext<CR>')
-map('n', '[b', '<CMD>BufferLineMovePrev<CR>')
-map('n', 'gs', '<CMD>BufferLineSortByDirectory<CR>')
-
--- Other
-map("n", "<C-n>", "<CMD>Oil<CR>")
-map('n', '<leader>f', '<Plug>(easymotion-bd-w)', options)
-map("n", "<leader>lg", "<cmd>lua _lazygit_toggle()<CR>", options)
-
--- ToggleTerm
-require("toggleterm").setup{}
-map("n", "<C-h>", ":ToggleTerm direction=float<CR>", options)
-
 function _G.set_terminal_keymaps()
   local opts = {buffer = 0}
   vim.keymap.set('t', '<C-h>', [[<Cmd>wincmd h<CR>]], opts)

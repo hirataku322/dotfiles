@@ -58,3 +58,8 @@ map("n", "<leader>lg", "<cmd>lua _lazygit_toggle()<CR>", options)
 -- ToggleTerm
 require("toggleterm").setup{}
 map("n", "<C-h>", ":ToggleTerm direction=float<CR>", options)
+
+-- Vimspector
+map('n', "Db", ":call vimspector#ToggleBreakpoint()<cr>")
+map('n', "Dw", ":call vimspector#AddWatch()<cr>")
+map('n', "De", ":call vimspector#Evaluate()<cr>")

@@ -1,4 +1,4 @@
-require('plugins')
+require('plug')
 require('opts')
 
 vim.g.mapleader = ' '

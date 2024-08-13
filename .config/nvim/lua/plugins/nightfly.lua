@@ -5,8 +5,9 @@ return {
     lazy = false,
     priority = 1000,
     config = function()
-      vim.cmd[[colorscheme nightfly]]
+      vim.opt.termguicolors=true
       vim.g.nightflyTransparent = true
+      vim.cmd[[colorscheme nightfly]]
     end
   }
 }

@@ -29,4 +29,3 @@ vim.opt.clipboard='unnamed'
 vim.opt.clipboard:append{'unnamedplus'}
 
 vim.opt.history=1000
-vim.opt.termguicolors=true

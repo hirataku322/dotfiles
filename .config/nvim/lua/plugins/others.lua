@@ -12,10 +12,6 @@ return {
   'nvim-tree/nvim-web-devicons',
   { 'akinsho/bufferline.nvim', version = "*", dependencies = 'nvim-tree/nvim-web-devicons'},
 
-  -- Telescope
-  { 'nvim-telescope/telescope.nvim', tag = '0.1.5', dependencies = { 'nvim-lua/plenary.nvim' }},
-  {'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
-
   -- Treesitter
   'nvim-treesitter/nvim-treesitter',
 

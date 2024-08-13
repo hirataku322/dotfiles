@@ -29,8 +29,4 @@ vim.opt.clipboard='unnamed'
 vim.opt.clipboard:append{'unnamedplus'}
 
 vim.opt.history=1000
-
--- Color Scheme
 vim.opt.termguicolors=true
-vim.g.nightflyTransparent = true
-vim.cmd[[colorscheme nightfly]]

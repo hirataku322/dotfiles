@@ -3,7 +3,6 @@ return {
   'tpope/vim-surround',
   'easymotion/vim-easymotion',
   'numToStr/Comment.nvim',
-  {'akinsho/toggleterm.nvim', versoin = '*', config = true },
 
   -- Theme
   'sheerun/vim-polyglot', -- old syntax highlighting

@@ -2,10 +2,6 @@ require('config.opts')
 require('config.keys')
 require('config.lazy')
 
--- -- Color Scheme
-vim.cmd[[colorscheme nightfly]]
-vim.g.nightflyTransparent = true
-
 require("toggleterm").setup{}
 vim.keymap.set("n", "<C-h>", ":ToggleTerm direction=float<CR>", options)
 function _G.set_terminal_keymaps()

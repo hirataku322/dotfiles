@@ -7,7 +7,6 @@ return {
 
   -- Theme
   'sheerun/vim-polyglot', -- old syntax highlighting
-  { "bluz71/vim-nightfly-colors", name = "nightfly", lazy = false, priority = 1000 },
 
   -- Status Line
   'nvim-lualine/lualine.nvim',

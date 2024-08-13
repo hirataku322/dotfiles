@@ -6,6 +6,8 @@ require('config.keys')
 -- vim.cmd[[colorscheme nightfly]]
 -- vim.g.nightflyTransparent = true
 
+-- require("toggleterm").setup{}
+-- map("n", "<C-h>", ":ToggleTerm direction=float<CR>", options)
 -- function _G.set_terminal_keymaps()
 --   local opts = {buffer = 0}
 --   vim.keymap.set('t', '<C-h>', [[<Cmd>wincmd h<CR>]], opts)
@@ -51,6 +53,22 @@ require('config.keys')
 -- })
 -- require("telescope").load_extension("fzf")
 --
+-- function get_git_root()
+--   return string.gsub(vim.fn.system("git rev-parse --show-toplevel"), "\n", "")
+-- end
+--
+-- function find_files()
+--   require('telescope.builtin').find_files({cwd = get_git_root(), hidden=true})
+-- end
+--
+-- function live_grep()
+--   require('telescope.builtin').live_grep({cwd = get_git_root(), hidden=true})
+-- end
+-- map('n', '<C-p>', find_files, options)
+-- map('n', '<leader>jg', live_grep, options)
+-- map('n', '<leader>jb', require('telescope.builtin').buffers, options)
+-- map('n', '<leader>jh', require('telescope.builtin').help_tags, options)
+--
 -- -- LazyGit
 -- local Terminal = require("toggleterm.terminal").Terminal
 -- local lazygit = Terminal:new({
@@ -62,6 +80,7 @@ require('config.keys')
 -- function _lazygit_toggle()
 -- 	lazygit:toggle()
 -- end
+-- map("n", "<leader>lg", "<cmd>lua _lazygit_toggle()<CR>", options)
 --
 -- -- Lualine
 -- require('lualine').setup {
@@ -86,6 +105,7 @@ require('config.keys')
 --     }
 --   }
 -- )
+-- map("n", "<C-n>", "<CMD>Oil<CR>")
 -- require('nvim-web-devicons').setup() 
 -- require('bufferline').setup()
 -- require('Comment').setup()
@@ -245,6 +265,10 @@ require('config.keys')
 -- let g:vimspector_terminal_maxwidth = 70
 -- ]])
 --
+-- map('n', "Db", ":call vimspector#ToggleBreakpoint()<cr>")
+-- map('n', "Dw", ":call vimspector#AddWatch()<cr>")
+-- map('n', "De", ":call vimspector#Evaluate()<cr>")
+--
 -- -- Vimspector
 -- vim.cmd([[
 -- nmap <F9> <cmd>call vimspector#Launch()<cr>
@@ -254,3 +278,7 @@ require('config.keys')
 -- nmap <F12> <cmd>call vimspector#StepOut()<cr>")
 -- nmap <F10> <cmd>call vimspector#StepInto()<cr>")
 -- ]])
+--
+
+-- easy-motion
+-- map('n', '<leader>f', '<Plug>(easymotion-bd-w)', options)

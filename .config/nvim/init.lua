@@ -1,6 +1,6 @@
-require('plug')
-require('opts')
-require('keys')
+require('config.plug')
+require('config.opts')
+require('config.keys')
 
 function _G.set_terminal_keymaps()
   local opts = {buffer = 0}

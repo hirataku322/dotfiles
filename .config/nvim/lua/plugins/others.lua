@@ -16,7 +16,6 @@ return {
 
   -- LSP
   'neovim/nvim-lspconfig',
-  'simrat39/rust-tools.nvim',
 
   -- Completion framework
   'hrsh7th/nvim-cmp',

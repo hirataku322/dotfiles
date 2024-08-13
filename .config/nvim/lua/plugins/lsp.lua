@@ -1,4 +1,6 @@
 return {
+  'neovim/nvim-lspconfig',
+
   -- LSP completion source
   'hrsh7th/cmp-nvim-lsp',
 

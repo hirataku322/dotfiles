@@ -8,7 +8,6 @@ return {
   'sheerun/vim-polyglot', -- old syntax highlighting
 
   -- Status Line
-  'nvim-lualine/lualine.nvim',
   'nvim-tree/nvim-web-devicons',
   { 'akinsho/bufferline.nvim', version = "*", dependencies = 'nvim-tree/nvim-web-devicons'},
 

@@ -2,23 +2,6 @@ require('config.opts')
 require('config.keys')
 require('config.lazy')
 
--- Lualine
-require('lualine').setup {
-  options = {
-    theme = 'nightfly',
-    component_separators = { left = '', right = ''},
-    section_separators = { left = '', right = ''}
-  },
-  sections = {
-    lualine_a = {'mode'},
-    lualine_b = {'branch', 'diff', 'diagnostics'},
-    lualine_c = {'filename'},
-    lualine_x = {'filetype'},
-    lualine_y = {'progress'},
-    lualine_z = {'location'}
-  }
-}
-
 require('nvim-web-devicons').setup() 
 require('bufferline').setup()
 require('Comment').setup()

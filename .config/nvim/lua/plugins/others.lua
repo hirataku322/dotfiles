@@ -15,8 +15,6 @@ return {
   'nvim-treesitter/nvim-treesitter',
 
   -- LSP
-  "williamboman/mason.nvim",
-  'williamboman/mason-lspconfig.nvim',
   'neovim/nvim-lspconfig',
   'simrat39/rust-tools.nvim',
 

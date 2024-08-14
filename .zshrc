@@ -32,6 +32,12 @@ alias ghb="gh browse"
 alias ghqr='cd $(ghq list -p | fzf)'
 alias lg='lazygit'
 
+git_create_repo() {
+  repo_path=$(ghq create $1)
+  gh repo create --public -s $repo_path
+}
+alias gcr=git_create_repo
+
 fd() {
   local dir
   dir=$(find ${1:-.} -path '*/\.*' -prune \

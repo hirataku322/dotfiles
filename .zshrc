@@ -88,3 +88,6 @@ drm() {
 alias dps='docker ps'
 alias dcu='docker compose up -d'
 alias dcd='docker compose down'
+
+# cargo
+alias cr='cargo run'

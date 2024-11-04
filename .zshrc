@@ -16,6 +16,7 @@ alias mkdir="mkdir -p"
 alias cp='cp -r'
 alias cd='cd -P'
 alias ls='exa -1a --sort type'
+alias ll='ls -la'
 alias wc='wc -l'
 alias history='history -id'
 

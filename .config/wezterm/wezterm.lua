@@ -8,6 +8,7 @@ config.use_ime = true
 
 -- colors & appearance
 config.color_scheme = 'iceberg-dark'
+
 config.window_background_opacity = 0.85
 config.macos_window_background_blur = 20
 
@@ -69,5 +70,8 @@ config.keys = {
     action = wezterm.action.ActivateCopyMode 
   },
 }
+
+-- バックスラッシュ対応
+config.send_composed_key_when_left_alt_is_pressed = true
 
 return config

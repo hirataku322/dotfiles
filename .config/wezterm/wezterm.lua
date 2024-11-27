@@ -69,6 +69,39 @@ config.keys = {
     mods = 'LEADER', 
     action = wezterm.action.ActivateCopyMode 
   },
+	{ 
+    key = "LeftArrow", 
+    mods = "OPT", 
+    action = wezterm.action.SendKey({ mods = "ALT", key = "b" }) 
+  },
+	{ 
+    key = "RightArrow", 
+    mods = "OPT", 
+    action = wezterm.action.SendKey({ mods = "ALT", key = "f" }) 
+  },
+  { 
+    key = "LeftArrow",
+    mods = "CMD",
+    action = wezterm.action.SendKey({ mods = "CTRL", key = "a" }) 
+  },
+  {
+    mods = "CMD",
+    key = "RightArrow",
+    action = wezterm.action.SendKey({ mods = "CTRL", key = "e" }) 
+  },
+  {
+    mods = "CMD",
+    key = "Backspace",
+    action = wezterm.action.SendKey({ mods = "CTRL", key = "u" }) 
+  },
+  {
+    mods = "CMD|OPT",
+    key = "LeftArrow",
+    action = wezterm.action.ActivateTabRelative(-1) },
+  {
+    mods = "CMD|OPT",
+    key = "RightArrow",
+    action = wezterm.action.ActivateTabRelative(1) },
 }
 
 -- バックスラッシュ対応

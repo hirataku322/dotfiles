@@ -13,5 +13,10 @@ return {
       extended_mode = true,
       max_file_lines = nil,
     }
-  }
+  },
+  build = ":TSUpdate",
+  config = function (_, opts) 
+    local configs = require("nvim-treesitter.configs")
+    configs.setup(opts)
+  end
 } 

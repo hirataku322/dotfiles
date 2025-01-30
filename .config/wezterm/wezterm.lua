@@ -65,6 +65,11 @@ config.keys = {
     action = wezterm.action.ActivateTabRelative(1) 
   },
   { 
+    key = 'p', 
+    mods = 'LEADER', 
+    action = wezterm.action.ActivateTabRelative(-1) 
+  },
+  { 
     key = '[', 
     mods = 'LEADER', 
     action = wezterm.action.ActivateCopyMode 

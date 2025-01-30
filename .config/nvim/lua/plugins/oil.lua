@@ -10,10 +10,9 @@ return {
         show_hidden = true
       }
     }, 
-    config = function(_, opts)
-      require("oil").setup(opts)
-      vim.keymap.set("n", "<C-n>", "<CMD>Oil<CR>")
-    end,
+    keys = {
+      { "<C-n>", "<CMD>Oil<CR>" }
+    },
     lazy = false,
   },
   {

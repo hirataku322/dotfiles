@@ -1,9 +1,8 @@
 return {
   'akinsho/toggleterm.nvim',
   versoin = '*',
-  opts = {},
   config = function()
-    require("toggleterm").setup(opts)
+    require("toggleterm").setup()
 
     -- 同じキーでオンオフを切り替える
     function _G.set_terminal_keymaps()

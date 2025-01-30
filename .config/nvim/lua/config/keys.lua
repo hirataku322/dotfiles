@@ -1,33 +1,23 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ','
 
-local map = vim.keymap.set
-options = {noremap = true}
+vim.keymap.set('n', 'k', 'gk')
+vim.keymap.set('n', 'j', 'gj')
+vim.keymap.set({'i', 'v'}, '<C-c>', '<ESC>')
+vim.keymap.set('n', '<C-l>', ':nohlsearch<CR>')
 
--- Mappings
-map('n', 'k', 'gk', options)
-map('n', 'j', 'gj', options)
-map({'i', 'v'}, '<C-c>', '<ESC>', options)
-map('n', '<C-l>', ':nohlsearch<CR>', options)
+vim.keymap.set('n', 'ss', ':sp<CR>')
+vim.keymap.set('n', 'sv', ':vs<CR>')
+vim.keymap.set('n', 'sq', ':q!<CR>')
+vim.keymap.set('n', 'sj', '<C-w>j')
+vim.keymap.set('n', 'sk', '<C-w>k')
+vim.keymap.set('n', 'sl', '<C-w>l')
+vim.keymap.set('n', 'sh', '<C-w>h')
+vim.keymap.set('n', 's>', '<C-w>>')
+vim.keymap.set('n', 's<', '<C-w><')
+vim.keymap.set('n', 's+', '<C-w>+')
+vim.keymap.set('n', 's-', '<C-w>-')
 
--- Window
-map('n', 'ss', ':sp<CR>', options)
-map('n', 'sv', ':vs<CR>', options)
-map('n', 'sq', ':q!<CR>', options)
-map('n', 'sj', '<C-w>j', options)
-map('n', 'sk', '<C-w>k', options)
-map('n', 'sl', '<C-w>l', options)
-map('n', 'sh', '<C-w>h', options)
-map('n', 'sJ', '<C-w>J', options)
-map('n', 'sK', '<C-w>K', options)
-map('n', 'sL', '<C-w>L', options)
-map('n', 'sH', '<C-w>H', options)
-map('n', 's>', '<C-w>>', options)
-map('n', 's<', '<C-w><', options)
-map('n', 's+', '<C-w>+', options)
-map('n', 's-', '<C-w>-', options)
-
--- Buffer
-map('n', '<C-j>', ':bp<CR>', options)
-map('n', '<C-k>', ':bn<CR>', options)
-map('n', 'sd', ':bp|bd#<CR>', options)
+vim.keymap.set('n', '<C-j>', ':bp<CR>')
+vim.keymap.set('n', '<C-k>', ':bn<CR>')
+vim.keymap.set('n', 'sd', ':bp|bd#<CR>')

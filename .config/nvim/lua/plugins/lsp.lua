@@ -12,20 +12,19 @@ return {
     config = function()
       -- setup
       local lspconfig = require('lspconfig')
-      lspconfig.pyright.setup{}
-      lspconfig.tsserver.setup{}
-      lspconfig.lua_ls.setup{
+      lspconfig.pyright.setup {}
+      lspconfig.lua_ls.setup {
         settings = {
           Lua = {
             diagnostics = {
-              globals = {'vim'}
+              globals = { 'vim' }
             }
           }
         }
       }
 
       -- Keymaps
-      vim.keymap.set('n', 'K',  '<cmd>lua vim.lsp.buf.hover()<CR>')
+      vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>')
       vim.keymap.set('n', 'gf', '<cmd>lua vim.lsp.buf.formatting()<CR>')
       vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>')
       vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>')

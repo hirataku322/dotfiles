@@ -13,8 +13,6 @@ vim.opt.laststatus=2
 vim.opt.wildmode='list:longest'
 vim.opt.cursorline=true
 
-vim.opt.list=true
-vim.opt.listchars='tab:▸-'
 vim.opt.expandtab=true
 vim.opt.tabstop=2 
 vim.opt.shiftwidth=2 

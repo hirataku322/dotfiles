@@ -12,6 +12,7 @@ return {
 				lua = { "stylua" },
 				python = { "ruff_format" },
 				typescript = { "prettier" },
+				markdown = { "prettier" },
 			},
 			format_on_save = format_on_save_opt,
 		})

@@ -1,6 +1,8 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
 
+vim.g.omni_sql_no_default_maps = 1
+
 vim.keymap.set("n", "k", "gk")
 vim.keymap.set("n", "j", "gj")
 vim.keymap.set({ "i", "v" }, "<C-c>", "<ESC>")

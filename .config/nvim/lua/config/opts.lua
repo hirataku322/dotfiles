@@ -24,7 +24,7 @@ vim.opt.incsearch = true
 vim.opt.wrapscan = true
 vim.opt.hlsearch = true
 
-vim.opt.clipboard = "unnamed"
-vim.opt.clipboard:append({ "unnamedplus" })
+vim.opt.clipboard = { "unnamed", "unnamedplus" }
 
 vim.opt.history = 1000
+vim.opt.helplang = "ja"

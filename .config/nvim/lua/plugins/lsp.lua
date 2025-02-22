@@ -5,7 +5,14 @@ return {
 	},
 	{
 		"williamboman/mason-lspconfig.nvim",
-		opts = {},
+		opts = {
+			ensure_installed = {
+				"pyright",
+				"ts_ls",
+				"jdtls",
+				"lua_ls",
+			},
+		},
 	},
 	{
 		"neovim/nvim-lspconfig",

@@ -9,7 +9,9 @@ return {
 	},
 	{
 		"nvim-java/nvim-java",
-		opts = {},
+		config = function()
+			require("java").setup({})
+		end,
 	},
 	{
 		"neovim/nvim-lspconfig",

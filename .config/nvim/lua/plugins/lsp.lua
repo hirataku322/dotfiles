@@ -31,6 +31,7 @@ return {
 					},
 				},
 			})
+			lspconfig.vimls.setup({})
 
 			-- Keymaps
 			vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>")

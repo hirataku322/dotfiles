@@ -33,7 +33,7 @@ return {
 			vim.lsp.config.vimls = {}
 
 			-- Enable LSP servers
-			vim.lsp.enable({ 'pyright', 'ts_ls', 'jdtls', 'lua_ls', 'vimls' })
+			vim.lsp.enable({ "pyright", "ts_ls", "jdtls", "lua_ls", "vimls" })
 
 			-- Keymaps
 			vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>")

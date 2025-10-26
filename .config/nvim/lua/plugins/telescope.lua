@@ -11,6 +11,10 @@ return {
 				file_ignore_patterns = {
 					-- 検索から除外するものを指定
 					"^.git/",
+					"^node_modules/",
+					"^.next/",
+					"^.venv/",
+					"^.DS_Store",
 					"^.cache/",
 					"^Library/",
 					"Parallels",

@@ -17,12 +17,11 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		config = function()
-			-- setup
-			local lspconfig = require("lspconfig")
-			lspconfig.pyright.setup({})
-			lspconfig.ts_ls.setup({})
-			lspconfig.jdtls.setup({})
-			lspconfig.lua_ls.setup({
+			-- setup using vim.lsp.config (Neovim 0.11+)
+			vim.lsp.config.pyright = {}
+			vim.lsp.config.ts_ls = {}
+			vim.lsp.config.jdtls = {}
+			vim.lsp.config.lua_ls = {
 				settings = {
 					Lua = {
 						diagnostics = {
@@ -30,8 +29,11 @@ return {
 						},
 					},
 				},
-			})
-			lspconfig.vimls.setup({})
+			}
+			vim.lsp.config.vimls = {}
+
+			-- Enable LSP servers
+			vim.lsp.enable({ 'pyright', 'ts_ls', 'jdtls', 'lua_ls', 'vimls' })
 
 			-- Keymaps
 			vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>")

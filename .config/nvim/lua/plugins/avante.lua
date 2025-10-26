@@ -15,10 +15,14 @@ return {
 		},
 		windows = {},
 		-- providers-setting
-		copilot = {
-			model = "gpt-4o-2024-05-13",
-			-- model = "gpt-4o-mini",
-			max_tokens = 4096,
+		providers = {
+			copilot = {
+				model = "gpt-4o-2024-05-13",
+				-- model = "gpt-4o-mini",
+				extra_request_body = {
+					max_tokens = 4096,
+				},
+			},
 		},
 	},
 	-- if you want to build from source then do `make BUILD_FROM_SOURCE=true`

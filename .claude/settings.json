@@ -1,27 +1,27 @@
 {
-  "alwaysThinkingEnabled": true,
   "hooks": {
     "Notification": [
       {
+        "matcher": "",
         "hooks": [
           {
-            "command": "terminal-notifier -title 'Claude Code' -message 'Claude Codeが確認を求めています' -activate wezterm",
-            "type": "command"
+            "type": "command",
+            "command": "terminal-notifier -title 'Claude Code' -message 'Claude Codeが確認を求めています' -activate wezterm"
           }
-        ],
-        "matcher": ""
+        ]
       }
     ],
     "Stop": [
       {
+        "matcher": "",
         "hooks": [
           {
-            "command": "terminal-notifier -title 'Claude Code' -message 'タスクが完了しました' -activate wezterm",
-            "type": "command"
+            "type": "command",
+            "command": "terminal-notifier -title 'Claude Code' -message 'タスクが完了しました' -activate wezterm"
           }
-        ],
-        "matcher": ""
+        ]
       }
     ]
-  }
+  },
+  "alwaysThinkingEnabled": false
 }

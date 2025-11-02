@@ -1,0 +1,26 @@
+{
+  "alwaysThinkingEnabled": true,
+  "hooks": {
+    "Notification": [
+      {
+        "hooks": [
+          {
+            "command": "terminal-notifier -title 'Claude Code' -message 'Claude Codeが確認を求めています' -activate wezterm",
+            "type": "command"
+          }
+        ],
+        "matcher": ""
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "command": "terminal-notifier -title 'Claude Code' -message 'タスクが完了しました' -activate wezterm",
+            "type": "command"
+          }
+        ],
+        "matcher": ""
+      }
+    ]
+}

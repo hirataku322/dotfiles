@@ -10,7 +10,6 @@ config.use_ime = true
 config.color_scheme = 'iceberg-dark'
 
 config.window_background_opacity = 0.85
-config.macos_window_background_blur = 20
 
 -- tab bar
 config.window_decorations = "RESIZE"

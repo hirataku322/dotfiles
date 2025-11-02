@@ -2,6 +2,13 @@ return {
   "coder/claudecode.nvim",
   dependencies = { "folke/snacks.nvim" },
   config = true,
+  opts = {
+    focus_after_send = true,
+    terminal = {
+      split_width_percentage = 0.35,
+      provider = "native",
+    },
+  },
   keys = {
     { "<leader>a",  nil,                              desc = "AI/Claude Code" },
     { "<leader>ac", "<cmd>ClaudeCode<cr>",            desc = "Toggle Claude" },

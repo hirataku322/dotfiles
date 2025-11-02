@@ -17,12 +17,12 @@ config.window_decorations = "RESIZE"
 config.show_tabs_in_tab_bar = true
 
 -- keymap
-config.leader = {key = 'q', mods='CTRL'}
+config.leader = { key = 'q', mods = 'CTRL' }
 config.keys = {
   {
     key = '¥',
     mods = 'LEADER',
-    action = wezterm.action.SplitHorizontal {domain = 'CurrentPaneDomain'},
+    action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' },
   },
   {
     key = '-',
@@ -32,7 +32,7 @@ config.keys = {
   {
     key = 'x',
     mods = 'LEADER',
-    action = wezterm.action.CloseCurrentPane {confirm = false} ,
+    action = wezterm.action.CloseCurrentPane { confirm = false },
   },
   {
     key = 'h',
@@ -59,54 +59,56 @@ config.keys = {
     mods = 'LEADER',
     action = wezterm.action.SpawnCommandInNewTab,
   },
-  { 
-    key = 'n', 
-    mods = 'LEADER', 
-    action = wezterm.action.ActivateTabRelative(1) 
+  {
+    key = 'n',
+    mods = 'LEADER',
+    action = wezterm.action.ActivateTabRelative(1)
   },
-  { 
-    key = 'p', 
-    mods = 'LEADER', 
-    action = wezterm.action.ActivateTabRelative(-1) 
+  {
+    key = 'p',
+    mods = 'LEADER',
+    action = wezterm.action.ActivateTabRelative(-1)
   },
-  { 
-    key = '[', 
-    mods = 'LEADER', 
-    action = wezterm.action.ActivateCopyMode 
+  {
+    key = '[',
+    mods = 'LEADER',
+    action = wezterm.action.ActivateCopyMode
   },
-	{ 
-    key = "LeftArrow", 
-    mods = "OPT", 
-    action = wezterm.action.SendKey({ mods = "ALT", key = "b" }) 
+  {
+    key = "LeftArrow",
+    mods = "OPT",
+    action = wezterm.action.SendKey({ mods = "ALT", key = "b" })
   },
-	{ 
-    key = "RightArrow", 
-    mods = "OPT", 
-    action = wezterm.action.SendKey({ mods = "ALT", key = "f" }) 
+  {
+    key = "RightArrow",
+    mods = "OPT",
+    action = wezterm.action.SendKey({ mods = "ALT", key = "f" })
   },
-  { 
+  {
     key = "LeftArrow",
     mods = "CMD",
-    action = wezterm.action.SendKey({ mods = "CTRL", key = "a" }) 
+    action = wezterm.action.SendKey({ mods = "CTRL", key = "a" })
   },
   {
     mods = "CMD",
     key = "RightArrow",
-    action = wezterm.action.SendKey({ mods = "CTRL", key = "e" }) 
+    action = wezterm.action.SendKey({ mods = "CTRL", key = "e" })
   },
   {
     mods = "CMD",
     key = "Backspace",
-    action = wezterm.action.SendKey({ mods = "CTRL", key = "u" }) 
+    action = wezterm.action.SendKey({ mods = "CTRL", key = "u" })
   },
   {
     mods = "CMD|OPT",
     key = "LeftArrow",
-    action = wezterm.action.ActivateTabRelative(-1) },
+    action = wezterm.action.ActivateTabRelative(-1)
+  },
   {
     mods = "CMD|OPT",
     key = "RightArrow",
-    action = wezterm.action.ActivateTabRelative(1) },
+    action = wezterm.action.ActivateTabRelative(1)
+  },
 }
 
 -- バックスラッシュ対応

@@ -31,3 +31,5 @@
   
   # 一覧表示
   wtl = worktree list
+
+  plog = log --pretty='format:%C(yellow)%h %C(green)%cd %C(reset)%s %C(red)%d %C(cyan)[%an]' --date=iso

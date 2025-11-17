@@ -9,7 +9,7 @@ config.use_ime = true
 -- colors & appearance
 config.color_scheme = 'iceberg-dark'
 
-config.window_background_opacity = 0.85
+config.window_background_opacity = 0.90
 
 -- tab bar
 config.window_decorations = "RESIZE"
@@ -98,15 +98,17 @@ config.keys = {
     key = "Backspace",
     action = wezterm.action.SendKey({ mods = "CTRL", key = "u" })
   },
+  -- タブを左に移動
   {
-    mods = "CMD|OPT",
-    key = "LeftArrow",
-    action = wezterm.action.ActivateTabRelative(-1)
+    key = 'LeftArrow',
+    mods = 'LEADER',
+    action = wezterm.action.MoveTabRelative(-1),
   },
+  -- タブを右に移動
   {
-    mods = "CMD|OPT",
-    key = "RightArrow",
-    action = wezterm.action.ActivateTabRelative(1)
+    key = 'RightArrow',
+    mods = 'LEADER',
+    action = wezterm.action.MoveTabRelative(1),
   },
   -- Vim buffer navigation for ClaudeCode
   -- https://zenn.dev/moneyforward/articles/cf771d9a51857d

@@ -110,19 +110,6 @@ config.keys = {
     mods = 'LEADER',
     action = wezterm.action.MoveTabRelative(1),
   },
-  -- Vim buffer navigation for ClaudeCode
-  -- https://zenn.dev/moneyforward/articles/cf771d9a51857d
-  {
-    mods = "CTRL",
-    key = ",",
-    action = wezterm.action.Multiple({
-      wezterm.action.SendKey({ key = "\\", mods = "CTRL" }),
-      wezterm.action.SendKey({ key = "n", mods = "CTRL" }),
-      -- sh には <C-w>h となるようにVim側の設定でバインドしている
-      wezterm.action.SendKey({ key = "s" }),
-      wezterm.action.SendKey({ key = "h" }),
-    }),
-  },
 }
 
 -- バックスラッシュ対応

@@ -20,7 +20,6 @@ return {
     config = function()
       -- setup using vim.lsp.config (Neovim 0.11+)
       vim.lsp.config.pyright = {}
-      vim.lsp.config.ts_ls = {}
       vim.lsp.config.jdtls = {}
       vim.lsp.config.lua_ls = {
         settings = {
@@ -33,6 +32,7 @@ return {
       }
       vim.lsp.config.vimls = {}
       vim.lsp.config.jsonls = {}
+      vim.lsp.enable('ts_ls')
 
       -- Enable LSP servers
       vim.lsp.enable({ "pyright", "ts_ls", "jdtls", "lua_ls", "vimls" })

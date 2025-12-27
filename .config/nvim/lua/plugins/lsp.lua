@@ -9,9 +9,10 @@ return {
       ensure_installed = {
         "pyright",
         "ts_ls",
+        "vue_ls",
         "jdtls",
         "lua_ls",
-        "jsonls"
+        "jsonls",
       },
     },
   },
@@ -32,10 +33,10 @@ return {
       }
       vim.lsp.config.vimls = {}
       vim.lsp.config.jsonls = {}
-      vim.lsp.enable('ts_ls')
+      vim.lsp.config.vue_ls = {}
 
       -- Enable LSP servers
-      vim.lsp.enable({ "pyright", "ts_ls", "jdtls", "lua_ls", "vimls" })
+      vim.lsp.enable({ "pyright", "ts_ls", "jdtls", "lua_ls", "vimls", "vue_ls", "jsonls" })
 
       -- Keymaps
       vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>")

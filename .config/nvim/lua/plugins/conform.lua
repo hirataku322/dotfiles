@@ -3,7 +3,7 @@ return {
   config = function()
     local conform = require("conform")
     local format_on_save_opt = {
-      timeout_ms = 500,
+      timeout_ms = 1000,
       lsp_fallback = true,
       async = false,
     }
@@ -11,7 +11,8 @@ return {
       formatters_by_ft = {
         python = { "ruff_format" },
         typescript = { "prettier" },
-        typescriptreqct = { "prettier" },
+        javascript = { "prettier" },
+        vue = { "prettier" },
         json = { "prettier" },
         html = { "prettier" },
         css = { "prettier" },

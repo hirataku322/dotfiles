@@ -50,22 +50,22 @@ return {
       vim.g["findroot_not_for_subdir"] = 0
       vim.g["rooter_patterns"] = { ".git", ".svn", "package.json", "!node_modules" }
 
-      function get_git_root()
+      local function get_git_root()
         return string.gsub(vim.fn.system("git rev-parse --show-toplevel"), "\n", "")
       end
 
-      function find_files()
+      local function find_files()
         require("telescope.builtin").find_files({ cwd = get_git_root(), hidden = true })
       end
 
-      function live_grep()
+      local function live_grep()
         require("telescope.builtin").live_grep({ cwd = get_git_root(), hidden = true })
       end
 
-      vim.keymap.set("n", "<C-p>", find_files, options)
-      vim.keymap.set("n", "<leader>jg", live_grep, options)
-      vim.keymap.set("n", "<leader>jb", require("telescope.builtin").buffers, options)
-      vim.keymap.set("n", "<leader>jh", require("telescope.builtin").help_tags, options)
+      vim.keymap.set("n", "<C-p>", find_files)
+      vim.keymap.set("n", "<leader>jg", live_grep)
+      vim.keymap.set("n", "<leader>jb", require("telescope.builtin").buffers)
+      vim.keymap.set("n", "<leader>jh", require("telescope.builtin").help_tags)
     end,
   },
   {

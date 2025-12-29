@@ -1,3 +1,12 @@
+local lsp_servers = {
+  "pyright",
+  "lua_ls",
+  "jsonls",
+  "yamlls",
+  "ts_ls",
+  "vue_ls",
+}
+
 return {
   {
     "williamboman/mason.nvim",
@@ -6,54 +15,77 @@ return {
   {
     "williamboman/mason-lspconfig.nvim",
     opts = {
-      ensure_installed = {
-        "pyright",
-        "ts_ls",
-        "vue_ls",
-        "jdtls",
-        "lua_ls",
-        "jsonls",
-      },
+      ensure_installed = lsp_servers,
     },
   },
   {
     "neovim/nvim-lspconfig",
     config = function()
-      -- setup using vim.lsp.config (Neovim 0.11+)
-      vim.lsp.config.pyright = {}
-      vim.lsp.config.jdtls = {}
-      vim.lsp.config.lua_ls = {
-        settings = {
-          Lua = {
-            diagnostics = {
-              globals = { "vim" },
+      vim.diagnostic.config({
+        virtual_text = true,
+        signs = true,
+        underline = true,
+        update_in_insert = false,
+        severity_sort = true,
+      })
+
+      local server_configs = {
+        lua_ls = {
+          settings = {
+            Lua = {
+              diagnostics = {
+                globals = { "vim" },
+              },
+              workspace = {
+                checkThirdParty = false,
+              },
+              telemetry = {
+                enable = false,
+              },
+            },
+          },
+        },
+        ts_ls = {
+          filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
+          init_options = {
+            plugins = {
+              {
+                name = "@vue/typescript-plugin",
+                location = vim.fn.stdpath('data') ..
+                    "/mason/packages/vue-language-server/node_modules/@vue/language-server",
+                languages = { "vue" },
+              },
             },
           },
         },
       }
-      vim.lsp.config.vimls = {}
-      vim.lsp.config.jsonls = {}
-      vim.lsp.config.vue_ls = {}
 
-      -- Enable LSP servers
-      vim.lsp.enable({ "pyright", "ts_ls", "jdtls", "lua_ls", "vimls", "vue_ls", "jsonls" })
+      for _, server in ipairs(lsp_servers) do
+        vim.lsp.config[server] = server_configs[server] or {}
+      end
 
-      -- Keymaps
-      vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>")
-      vim.keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>")
-      vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
-      vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>")
-      vim.keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>")
-      vim.keymap.set("n", "gt", "<cmd>lua vim.lsp.buf.type_definition()<CR>")
-      vim.keymap.set("n", "gn", "<cmd>lua vim.lsp.buf.rename()<CR>")
-      vim.keymap.set("n", "ga", "<cmd>lua vim.lsp.buf.code_action()<CR>")
-      vim.keymap.set("n", "ge", "<cmd>lua vim.diagnostic.open_float()<CR>")
-      vim.keymap.set("n", "g]", "<cmd>lua vim.diagnostic.goto_next()<CR>")
-      vim.keymap.set("n", "g[", "<cmd>lua vim.diagnostic.goto_prev()<CR>")
+      vim.lsp.enable(lsp_servers)
 
-      -- Handlers
-      vim.lsp.handlers["textDocument/publishDiagnostics"] =
-          vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, { virtual_text = false })
+      local keymaps = {
+        -- 情報表示
+        { "n", "K",  vim.lsp.buf.hover },
+        { "n", "ge", vim.diagnostic.open_float },
+        -- ナビゲーション
+        { "n", "gd", vim.lsp.buf.definition },
+        { "n", "gD", vim.lsp.buf.declaration },
+        { "n", "gi", vim.lsp.buf.implementation },
+        { "n", "gt", vim.lsp.buf.type_definition },
+        { "n", "gr", vim.lsp.buf.references },
+        { "n", "g]", vim.diagnostic.goto_next },
+        { "n", "g[", vim.diagnostic.goto_prev },
+        -- コード操作
+        { "n", "gn", vim.lsp.buf.rename },
+        { "n", "ga", vim.lsp.buf.code_action },
+      }
+
+      for _, keymap in ipairs(keymaps) do
+        vim.keymap.set(keymap[1], keymap[2], keymap[3])
+      end
     end,
   },
 }

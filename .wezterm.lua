@@ -59,13 +59,13 @@ config.keys = {
     action = wezterm.action.SpawnCommandInNewTab,
   },
   {
-    key = 'n',
-    mods = 'LEADER',
+    key = 'k',
+    mods = 'CTRL',
     action = wezterm.action.ActivateTabRelative(1)
   },
   {
-    key = 'p',
-    mods = 'LEADER',
+    key = 'j',
+    mods = 'CTRL',
     action = wezterm.action.ActivateTabRelative(-1)
   },
   {

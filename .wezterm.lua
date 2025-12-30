@@ -7,13 +7,13 @@ config.font = wezterm.font 'JetBrains Mono'
 config.use_ime = true
 
 -- colors & appearance
-config.color_scheme = 'iceberg-dark'
+config.color_scheme = 'catppuccin-mocha'
 
-config.window_background_opacity = 0.90
+config.window_background_opacity = 0.80
+config.macos_window_background_blur = 20
 
 -- tab bar
 config.window_decorations = "RESIZE"
-config.show_tabs_in_tab_bar = true
 
 -- keymap
 config.leader = { key = 'q', mods = 'CTRL' }

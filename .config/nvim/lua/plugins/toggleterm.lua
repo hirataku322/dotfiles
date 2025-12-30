@@ -1,8 +1,15 @@
 return {
   "akinsho/toggleterm.nvim",
-  versoin = "*",
+  version = "*",
   config = function()
-    require("toggleterm").setup()
+    require("toggleterm").setup({
+      float_opts = {
+        height = function()
+          return math.floor(vim.o.lines * 0.89)
+        end,
+        border = "solid",
+      }
+    })
 
     -- 同じキーでオンオフを切り替える
     function _G.set_terminal_keymaps()

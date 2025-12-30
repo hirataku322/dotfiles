@@ -10,6 +10,10 @@ return {
         position = "float",
         width = 0.9,
         height = 0.9,
+        wo = {
+          winblend = 100,
+          winhighlight = "NormalFloat:MyTransparentGroup",
+        },
         keys = {
           claude_hide_toggle_key = {
             toggle_key,
@@ -22,6 +26,9 @@ return {
         },
       },
     },
+    diff_opts = {
+      keep_terminal_focus = true,
+    }
   },
   keys = {
     { "<leader>a",  nil,                              desc = "AI/Claude Code" },

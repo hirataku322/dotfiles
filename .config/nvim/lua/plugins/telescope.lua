@@ -11,7 +11,7 @@ return {
         layout_strategy = "horizontal",
         layout_config = {
           horizontal = {
-            preview_width = 0.6,
+            preview_width = 0.5,
             width = 0.9,
             height = 0.9,
           },

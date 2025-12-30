@@ -7,7 +7,7 @@ return {
         height = function()
           return math.floor(vim.o.lines * 0.89)
         end,
-        border = "solid",
+        border = "rounded",
       }
     })
 

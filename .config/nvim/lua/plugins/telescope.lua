@@ -8,14 +8,17 @@ return {
     tag = "0.1.5",
     opts = {
       defaults = {
+        layout_strategy = "horizontal",
+        layout_config = {
+          horizontal = {
+            preview_width = 0.6,
+            width = 0.9,
+            height = 0.9,
+          },
+        },
         file_ignore_patterns = {
-          -- 検索から除外するものを指定
           "^.git/",
-          "^node_modules/",
-          "^.next/",
-          "^.venv/",
           "^.DS_Store",
-          "^.cache/",
           "^Library/",
           "Parallels",
           "^Movies",
@@ -30,7 +33,6 @@ return {
           "--line-number",
           "--column",
           "--smart-case",
-          "-uu",
         },
       },
       extensions = {
@@ -47,25 +49,28 @@ return {
       require("telescope").setup(opts)
       require("telescope").load_extension("fzf")
 
-      vim.g["findroot_not_for_subdir"] = 0
-      vim.g["rooter_patterns"] = { ".git", ".svn", "package.json", "!node_modules" }
+      local builtin = require("telescope.builtin")
 
       local function get_git_root()
-        return string.gsub(vim.fn.system("git rev-parse --show-toplevel"), "\n", "")
+        local git_root = vim.fn.system("git rev-parse --show-toplevel 2>/dev/null")
+        if vim.v.shell_error ~= 0 then
+          return vim.fn.getcwd()
+        end
+        return string.gsub(git_root, "\n", "")
       end
 
       local function find_files()
-        require("telescope.builtin").find_files({ cwd = get_git_root(), hidden = true })
+        builtin.find_files({ cwd = get_git_root(), hidden = true })
       end
 
       local function live_grep()
-        require("telescope.builtin").live_grep({ cwd = get_git_root(), hidden = true })
+        builtin.live_grep({ cwd = get_git_root(), hidden = true })
       end
 
       vim.keymap.set("n", "<C-p>", find_files)
       vim.keymap.set("n", "<leader>jg", live_grep)
-      vim.keymap.set("n", "<leader>jb", require("telescope.builtin").buffers)
-      vim.keymap.set("n", "<leader>jh", require("telescope.builtin").help_tags)
+      vim.keymap.set("n", "<leader>jb", builtin.buffers)
+      vim.keymap.set("n", "<leader>jh", builtin.help_tags)
     end,
   },
   {

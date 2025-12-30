@@ -25,5 +25,8 @@
       "WebFetch(domain:npmjs.com)",
       "WebFetch(domain:nextjs.org)"
     ]
+  },
+  "enabledPlugins": {
+    "commit-commands@claude-plugins-official": true
   }
 }

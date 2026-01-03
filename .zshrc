@@ -1,15 +1,20 @@
 # initialize
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-eval "$(starship init zsh)"
+
+# starship (cache init script)
+if [[ ! -f ~/.zsh_starship_init ]] || [[ ~/.config/starship.toml -nt ~/.zsh_starship_init ]]; then
+  starship init zsh > ~/.zsh_starship_init
+fi
+source ~/.zsh_starship_init
+
 . ~/ghq/github.com/rupa/z/z.sh
 
 # history
-export HISTFILE=${HOME}/.zsh_history 
-export HISTSIZE=1000 
-export SAVEHIST=1000 
-setopt hist_ignore_dups 
-setopt EXTENDED_HISTORY 
-setopt extended_history 
+export HISTFILE=${HOME}/.zsh_history
+export HISTSIZE=1000
+export SAVEHIST=1000
+setopt hist_ignore_dups
+setopt EXTENDED_HISTORY
 
 # basic
 alias mkdir="mkdir -p"
@@ -61,17 +66,25 @@ man() {
 
 # completions
 fpath+=~/.zfunc
-autoload -Uz compinit && compinit
 
-# auto suggestions
-source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+# compinit with cache (rebuild once per day)
+autoload -Uz compinit
+if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
+  compinit
+else
+  compinit -C
+fi
+
+# auto suggestions (hardcode brew prefix to avoid slow $(brew --prefix))
+source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 bindkey '^k' autosuggest-accept
 
-eval "$(op completion zsh)"; compdef _op op
-
-# poetry completions
-fpath+=~/.zfunc
-autoload -Uz compinit && compinit
+# 1password completion (lazy load)
+op() {
+  unfunction op
+  eval "$(command op completion zsh)"
+  command op "$@"
+}
 
 # docker
 docker_select() {

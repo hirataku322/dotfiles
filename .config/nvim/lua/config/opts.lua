@@ -31,7 +31,3 @@ vim.opt.wildmode = "list:longest"
 vim.opt.clipboard = { "unnamed", "unnamedplus" }
 vim.opt.history = 1000
 vim.opt.helplang = "ja"
-
--- 注: autochdir は予期しない動作を引き起こす可能性があるため、
--- プロジェクトルート検出プラグインの使用を検討してください
--- vim.opt.autochdir = true

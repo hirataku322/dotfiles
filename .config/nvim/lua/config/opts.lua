@@ -7,6 +7,7 @@ vim.opt.hidden = true
 
 -- 表示設定
 vim.opt.showcmd = true
+vim.opt.number = true
 vim.opt.laststatus = 2
 vim.opt.cursorline = true
 vim.opt.showmatch = true

@@ -20,4 +20,6 @@ vim.keymap.set("n", "s<", "<C-w><", { desc = "ウィンドウ幅を狭める" })
 vim.keymap.set("n", "s+", "<C-w>+", { desc = "ウィンドウ高を高くする" })
 vim.keymap.set("n", "s-", "<C-w>-", { desc = "ウィンドウ高を低くする" })
 
+vim.keymap.set("n", "<C-j>", ":bp<CR>", { desc = "前のバッファへ移動" })
+vim.keymap.set("n", "<C-k>", ":bn<CR>", { desc = "後のバッファへ移動" })
 vim.keymap.set("n", "sd", ":bp|bd#<CR>", { desc = "現在のバッファを削除" })

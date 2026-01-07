@@ -7,7 +7,8 @@ if [[ ! -f ~/.zsh_starship_init ]] || [[ ~/.config/starship.toml -nt ~/.zsh_star
 fi
 source ~/.zsh_starship_init
 
-. ~/ghq/github.com/rupa/z/z.sh
+# zoxide
+eval "$(zoxide init zsh)"
 
 # history
 export HISTFILE=${HOME}/.zsh_history
@@ -19,7 +20,7 @@ setopt EXTENDED_HISTORY
 # basic
 alias mkdir="mkdir -p"
 alias cp='cp -r'
-alias cd='cd -P'
+alias cd='z'
 alias ls='exa -1a --sort type'
 alias ll='ls -la'
 alias wc='wc -l'
@@ -35,7 +36,7 @@ alias w3m="w3m -dump -cols 9999"
 alias gp="git push origin"
 alias gpl="git pull origin"
 alias ghb="gh browse"
-alias ghqr='cd $(ghq list -p | fzf)'
+alias ghqr='z $(ghq list -p | fzf)'
 alias lg='lazygit'
 
 git_create_repo() {
@@ -78,30 +79,3 @@ fi
 # auto suggestions (hardcode brew prefix to avoid slow $(brew --prefix))
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 bindkey '^k' autosuggest-accept
-
-# 1password completion (lazy load)
-op() {
-  unfunction op
-  eval "$(command op completion zsh)"
-  command op "$@"
-}
-
-# docker
-docker_select() {
-  docker ps --format 'table {{ .ID }}\t{{ .Image }}\t{{ .Command }}\t{{ .Ports }}' | fzf --header-lines=1 --select-1 | awk '{print $1}'
-}
-
-dst() {
-  docker stop $@ $(docker_select)
-}
-
-drm() {
-  docker rm $@ $(docker_select)
-}
-
-alias dps='docker ps'
-alias dcu='docker compose up -d'
-alias dcd='docker compose down'
-
-# cargo
-alias cr='cargo run'

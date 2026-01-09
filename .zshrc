@@ -25,12 +25,7 @@ alias ls='exa -1a --sort type'
 alias ll='ls -la'
 alias wc='wc -l'
 alias history='history -id'
-
 alias v="nvim"
-alias zs="nvim ~/.zshrc && source ~/.zshrc"
-
-alias q="q -tH"
-alias w3m="w3m -dump -cols 9999"
 
 # git
 alias gp="git push origin"
@@ -45,15 +40,7 @@ git_create_repo() {
 }
 alias gcr=git_create_repo
 
-fd() {
-  local dir
-  dir=$(find ${1:-.} -path '*/\.*' -prune \
-                  -o -type d -print 2> /dev/null | fzf +m) &&
-  cd "$dir"
-}
-
-# manを色付け
-man() {
+man_with_color() {
   env \
     LESS_TERMCAP_mb=$(printf "\e[1;31m") \
     LESS_TERMCAP_md=$(printf "\e[1;31m") \
@@ -64,6 +51,7 @@ man() {
     LESS_TERMCAP_us=$(printf "\e[1;32m") \
     man "$@"
 }
+alias man=man_with_color
 
 # completions
 fpath+=~/.zfunc

@@ -28,8 +28,6 @@ alias history='history -id'
 alias v="nvim"
 
 # git
-alias gp="git push origin"
-alias gpl="git pull origin"
 alias ghb="gh browse"
 alias ghqr='z $(ghq list -p | fzf)'
 alias lg='lazygit'

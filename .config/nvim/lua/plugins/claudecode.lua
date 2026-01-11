@@ -20,6 +20,7 @@ return {
             toggle_key,
             function(self)
               self:hide()
+              vim.cmd("checktime")
             end,
             mode = "t",
             desc = "Hide",

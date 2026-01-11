@@ -12,6 +12,7 @@ vim.opt.laststatus = 2
 vim.opt.cursorline = true
 vim.opt.showmatch = true
 vim.opt.laststatus = 0
+vim.opt.signcolumn = "yes"
 
 -- 編集設定
 vim.opt.virtualedit = "onemore"

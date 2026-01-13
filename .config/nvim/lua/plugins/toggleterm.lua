@@ -18,7 +18,10 @@ return {
     end
 
     vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
-    vim.keymap.set("n", "<C-h>", ":ToggleTerm direction=float<CR>")
+    vim.keymap.set("n", "<C-h>", function()
+      local dir = vim.fn.fnameescape(vim.fn.expand("%:p:h"))
+      vim.cmd("ToggleTerm direction=float dir=" .. dir)
+    end)
 
     -- open lazygit in toggreterm
     local Terminal = require("toggleterm.terminal").Terminal

@@ -45,9 +45,13 @@ setup.shは以下のファイルをシンボリックリンクでデプロイ:
 - Mason.nvim経由でLSPサーバーを管理
 - 設定済みLSPサーバー: pyright, lua_ls, jsonls, yamlls, ts_ls, vue_ls
 - Vue.js用にTypeScriptプラグインを設定
-- LSPキーマップ: `gd`(定義)、`gr`(参照)、`gn`(リネーム)、`ga`(コードアクション)など
+- LSPキーマップ:
+  - `K`: ホバー情報、`ge`: 診断フロート表示
+  - `gd`: 定義、`gD`: 宣言、`gi`: 実装、`gt`: 型定義、`gr`: 参照
+  - `g]`/`g[`: 次/前の診断へジャンプ
+  - `gn`: リネーム、`ga`: コードアクション
 
-#### フォーマッター (`plugins/conform.lua`)
+#### フォーマッター (`plugins/format.lua`)
 
 - Conform.nvimを使用
 - 保存時に自動フォーマット実行
@@ -64,15 +68,27 @@ setup.shは以下のファイルをシンボリックリンクでデプロイ:
   - `<leader>jb`: バッファ一覧
   - `<leader>jh`: ヘルプタグ検索
 
+#### 補完 (`plugins/complement.lua`)
+
+- nvim-cmpを使用
+- LSP、スニペット(vsnip)、パス、バッファからの補完
+- 補完操作: `<C-p>`/`<C-n>`(選択)、`<CR>`(確定)、`<C-Space>`(手動トリガー)
+
 #### その他の主要プラグイン
 
 - `plugins/oil.lua` - ファイラー
 - `plugins/copilot.lua` - GitHub Copilot
+- `plugins/claudecode.lua` - Claude Code統合
 - `plugins/toggleterm.lua` - 統合ターミナル
 - `plugins/treesitter.lua` - シンタックスハイライト
-- `plugins/cmp.lua` - 補完
 - `plugins/gitsigns.lua` - Git統合
 - `plugins/color-scheme.lua` - カラースキーム(catppuccin-mocha)
+- `plugins/bufferline.lua` - バッファタブ表示
+- `plugins/lualine.lua` - ステータスライン
+- `plugins/autopairs.lua` - 自動括弧補完
+- `plugins/easymotion.lua` - 高速カーソル移動
+- `plugins/indent-blankline.lua` - インデントガイド
+- `plugins/nvim-colorizer.lua` - カラーコードプレビュー
 
 ### グローバル設定
 
@@ -90,6 +106,12 @@ setup.shは以下のファイルをシンボリックリンクでデプロイ:
 - エンコーディング: UTF-8
 - クリップボード統合有効
 - スワップファイル/バックアップ無効
+- 24bitカラー(termguicolors)有効
+- 分割: 右/下に開く
+- スクロールオフセット: 上下左右8行/列
+- updatetime: 250ms (CursorHold高速化)
+- undoファイル永続化有効
+- 置換リアルタイムプレビュー(inccommand)
 
 ## WezTerm設定
 
@@ -107,7 +129,7 @@ setup.shは以下のファイルをシンボリックリンクでデプロイ:
 
 1. **プラグイン追加**: `lua/plugins/`に新しい`.lua`ファイルを作成。Lazy.nvimが自動検出
 2. **LSP追加**: `plugins/lsp.lua`の`lsp_servers`配列に追加
-3. **フォーマッター追加**: `plugins/conform.lua`の`formatters_by_ft`に追加
+3. **フォーマッター追加**: `plugins/format.lua`の`formatters_by_ft`に追加
 4. **設定変更後**: Neovimを再起動するか`:Lazy sync`を実行
 
 ## 開発環境の前提

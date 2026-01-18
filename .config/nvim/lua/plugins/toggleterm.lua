@@ -1,6 +1,10 @@
 return {
   "akinsho/toggleterm.nvim",
   version = "*",
+  keys = {
+    { "<C-h>",      desc = "Toggle terminal" },
+    { "<leader>lg", desc = "Toggle lazygit" },
+  },
   config = function()
     require("toggleterm").setup({
       float_opts = {
@@ -8,22 +12,24 @@ return {
           return math.floor(vim.o.lines * 0.89)
         end,
         border = "rounded",
-      }
+      },
     })
 
-    -- 同じキーでオンオフを切り替える
-    function _G.set_terminal_keymaps()
-      local opts = { buffer = 0 }
-      vim.keymap.set("t", "<C-h>", [[<Cmd>wincmd h<CR>]], opts)
-    end
+    -- ターミナルモードでのキーマップ設定
+    vim.api.nvim_create_autocmd("TermOpen", {
+      pattern = "term://*",
+      callback = function()
+        vim.keymap.set("t", "<C-h>", [[<Cmd>wincmd h<CR>]], { buffer = 0, desc = "Move to left window" })
+      end,
+    })
 
-    vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
+    -- フローティングターミナルのトグル（現在のファイルのディレクトリで開く）
     vim.keymap.set("n", "<C-h>", function()
       local dir = vim.fn.fnameescape(vim.fn.expand("%:p:h"))
       vim.cmd("ToggleTerm direction=float dir=" .. dir)
-    end)
+    end, { desc = "Toggle terminal" })
 
-    -- open lazygit in toggreterm
+    -- lazygit in toggleterm
     local Terminal = require("toggleterm.terminal").Terminal
     local lazygit = Terminal:new({
       cmd = "lazygit",
@@ -31,9 +37,8 @@ return {
       hidden = true,
     })
 
-    local function lazygit_toggle()
+    vim.keymap.set("n", "<leader>lg", function()
       lazygit:toggle()
-    end
-    vim.keymap.set("n", "<leader>lg", lazygit_toggle)
+    end, { desc = "Toggle lazygit" })
   end,
 }

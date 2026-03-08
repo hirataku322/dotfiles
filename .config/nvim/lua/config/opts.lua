@@ -55,6 +55,14 @@ vim.api.nvim_create_autocmd("BufWritePost", {
   end,
 })
 
+-- lazygitのコミットメッセージ編集: 保存後に自動でバッファを閉じてlazygitに制御を返す
+vim.api.nvim_create_autocmd("BufWritePost", {
+  pattern = "COMMIT_EDITMSG",
+  callback = function()
+    vim.cmd("bdelete")
+  end,
+})
+
 -- その他
 vim.opt.wildmode = "list:longest"
 vim.opt.clipboard = { "unnamed", "unnamedplus" }

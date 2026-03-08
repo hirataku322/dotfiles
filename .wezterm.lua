@@ -10,7 +10,7 @@ config.use_ime = true
 config.color_scheme = 'catppuccin-mocha'
 
 config.window_background_opacity = 0.90
-config.macos_window_background_blur = 10
+-- config.macos_window_background_blur = 10
 
 -- tab bar
 config.window_decorations = "RESIZE"

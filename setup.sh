@@ -15,6 +15,7 @@ SYMLINKS=(
   ".config/starship.toml:~/.config/starship.toml"
   ".config/nvim:~/.config/nvim"
   ".config/github-copilot:~/.config/github-copilot"
+  "claude/settings.json:~/.claude/settings.json"
 )
 
 for item in "${SYMLINKS[@]}"; do

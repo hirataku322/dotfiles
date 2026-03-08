@@ -17,6 +17,8 @@ return {
         html = { "prettier" },
         css = { "prettier" },
         markdown = { "prettier" },
+        php = { "php-cs-fixer" },
+        rust = { "rustfmt" },
       },
       format_on_save = format_on_save_opt,
     })

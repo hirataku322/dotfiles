@@ -65,3 +65,22 @@ fi
 # auto suggestions (hardcode brew prefix to avoid slow $(brew --prefix))
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 bindkey '^k' autosuggest-accept
+
+# zk note management
+export ZK_NOTEBOOK_DIR="$HOME/ghq/github.com/hirataku322/note"
+
+# 新規ノート作成: zn "タイトル"
+function zn() {
+  local title="$(date +%Y-%m-%d)-$1"
+  zk new --title "$title" "$ZK_NOTEBOOK_DIR"
+}
+
+# ノート検索: zf "キーワード"
+function zf() {
+  zk edit --interactive --match "$*" "$ZK_NOTEBOOK_DIR"
+}
+
+# タグ一覧
+function zt() {
+  zk tag list "$ZK_NOTEBOOK_DIR"
+}

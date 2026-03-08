@@ -5,6 +5,8 @@ local lsp_servers = {
   "yamlls",
   "ts_ls",
   "vue_ls",
+  "phpactor",
+  "rust_analyzer",
 }
 
 return {

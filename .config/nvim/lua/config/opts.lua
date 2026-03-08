@@ -30,10 +30,10 @@ vim.opt.hlsearch = true
 
 -- UI改善
 vim.opt.termguicolors = true -- 24bitカラーサポート
-vim.opt.splitright = true -- 垂直分割を右に開く
-vim.opt.splitbelow = true -- 水平分割を下に開く
-vim.opt.scrolloff = 8 -- カーソル上下に常に8行表示
-vim.opt.sidescrolloff = 8 -- カーソル左右に常に8列表示
+vim.opt.splitright = true    -- 垂直分割を右に開く
+vim.opt.splitbelow = true    -- 水平分割を下に開く
+vim.opt.scrolloff = 8        -- カーソル上下に常に8行表示
+vim.opt.sidescrolloff = 8    -- カーソル左右に常に8列表示
 
 -- パフォーマンス
 vim.opt.updatetime = 250 -- CursorHoldの反応速度改善（GitSignsなど）
@@ -44,6 +44,16 @@ vim.opt.undofile = true -- undoファイルを保存
 
 -- 置換プレビュー
 vim.opt.inccommand = "split" -- 置換時にリアルタイムプレビュー表示
+
+-- config/ ホットリロード
+-- :source で即反映できるため BufWritePost で自動ソースする。
+vim.api.nvim_create_autocmd("BufWritePost", {
+  pattern = vim.fn.stdpath("config") .. "/lua/config/*.lua",
+  callback = function(event)
+    vim.cmd("source " .. event.file)
+    vim.notify("Sourced: " .. vim.fn.fnamemodify(event.file, ":t"), vim.log.levels.INFO)
+  end,
+})
 
 -- その他
 vim.opt.wildmode = "list:longest"

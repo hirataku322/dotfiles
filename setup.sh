@@ -16,6 +16,7 @@ SYMLINKS=(
   ".config/nvim:~/.config/nvim"
   ".config/github-copilot:~/.config/github-copilot"
   "claude/settings.json:~/.claude/settings.json"
+  ".config/lazygit/config.yml:~/Library/Application Support/lazygit/config.yml"
 )
 
 for item in "${SYMLINKS[@]}"; do

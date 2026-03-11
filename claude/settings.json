@@ -1,0 +1,128 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(task:*)",
+      "Bash(sleep:*)",
+      "Bash(git:*)",
+      "Bash(stat:*)",
+      "Bash(ls:*)",
+      "Bash(cat:*)",
+      "Bash(pwd:*)",
+      "Bash(cd:*)",
+      "Bash(find:*)",
+      "Bash(grep:*)",
+      "Bash(rg:*)",
+      "Bash(npm:*)",
+      "Bash(node:*)",
+      "Bash(python:*)",
+      "Bash(make:*)",
+      "Bash(curl:*)",
+      "Bash(echo:*)",
+      "Bash(vercel:*)",
+      "Bash(gh:*)",
+      "Bash(brew:*)",
+      "Bash(ln:*)",
+      "Bash(cp:*)",
+      "Bash(mv:*)",
+      "Bash(mkdir:*)",
+      "Bash(chmod:*)",
+      "Bash(which:*)",
+      "Bash(zsh:*)",
+      "Bash(bash:*)",
+      "Bash(jq:*)",
+      "Bash(wc:*)",
+      "Bash(sort:*)",
+      "Bash(uniq:*)",
+      "Bash(head:*)",
+      "Bash(tail:*)",
+      "Bash(sed:*)",
+      "Bash(awk:*)",
+      "Bash(xargs:*)",
+      "Bash(tr:*)",
+      "Bash(diff:*)",
+      "Bash(touch:*)",
+      "Bash(type:*)",
+      "Bash(source:*)",
+      "Bash(export:*)",
+      "Bash(open:*)",
+      "Bash(pbcopy:*)",
+      "Bash(pbpaste:*)",
+      "Bash(pnpm:*)",
+      "Bash(yarn:*)",
+      "Bash(bun:*)",
+      "Bash(npx:*)",
+      "Bash(vite:*)",
+      "Bash(php:*)",
+      "Bash(composer:*)",
+      "Bash(artisan:*)",
+      "Bash(phpunit:*)",
+      "Bash(pest:*)",
+      "Bash(phpstan:*)",
+      "Bash(phpcs:*)",
+      "Bash(docker:*)",
+      "Bash(mysql:*)",
+      "Bash(psql:*)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:vercel.com)",
+      "WebFetch(domain:docs.anthropic.com)",
+      "WebFetch(domain:stackoverflow.com)",
+      "WebFetch(domain:developer.mozilla.org)",
+      "WebFetch(domain:npmjs.com)",
+      "WebFetch(domain:nextjs.org)",
+      "WebFetch(domain:neovim.io)",
+      "WebFetch(domain:wezfurlong.org)",
+      "WebFetch(domain:lazy.folke.io)",
+      "WebFetch(domain:lua.org)",
+      "WebFetch(domain:luarocks.org)",
+      "WebFetch(domain:brew.sh)",
+      "WebFetch(domain:vuejs.org)",
+      "WebFetch(domain:vite.dev)",
+      "WebFetch(domain:pinia.vuejs.org)",
+      "WebFetch(domain:laravel.com)",
+      "WebFetch(domain:php.net)",
+      "WebFetch(domain:packagist.org)",
+      "WebFetch(domain:getcomposer.org)",
+      "WebSearch"
+    ]
+  },
+  "enabledPlugins": {
+    "commit-commands@claude-plugins-official": true,
+    "feature-dev@claude-plugins-official": true,
+    "serena@claude-plugins-official": true,
+    "skill-creator@claude-plugins-official": true,
+    "frontend-design@claude-plugins-official": true
+  },
+  "extraKnownMarketplaces": {
+    "anthropic-agent-skills": {
+      "source": {
+        "source": "github",
+        "repo": "anthropics/skills"
+      }
+    }
+  },
+  "autoAcceptEdits": true,
+  "hooks": {
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "terminal-notifier -title 'Claude' -message 'Task Completed' -sound Glass"
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "terminal-notifier -title 'Claude' -message 'Waiting for your input' -sound Glass"
+          }
+        ]
+      }
+    ]
+  }
+}

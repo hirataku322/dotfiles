@@ -4,6 +4,7 @@ return {
   keys = {
     { "<C-h>",      desc = "Toggle terminal" },
     { "<leader>lg", desc = "Toggle lazygit" },
+    { "<C-,>",      desc = "Toggle opencode" },
   },
   config = function()
     require("toggleterm").setup({
@@ -20,6 +21,7 @@ return {
       pattern = "term://*",
       callback = function()
         vim.keymap.set("t", "<C-h>", [[<Cmd>wincmd h<CR>]], { buffer = 0, desc = "Move to left window" })
+        vim.keymap.set("t", "<C-,>", [[<Cmd>wincmd h<CR>]], { buffer = 0, desc = "Move to left window" })
       end,
     })
 
@@ -40,5 +42,16 @@ return {
     vim.keymap.set("n", "<leader>l", function()
       lazygit:toggle()
     end, { desc = "Toggle lazygit" })
+
+    -- opencode in toggleterm
+    local opencode = Terminal:new({
+      cmd = "opencode",
+      direction = "float",
+      hidden = true,
+    })
+
+    vim.keymap.set("n", "<C-,>", function()
+      opencode:toggle()
+    end, { desc = "Toggle opencode" })
   end,
 }

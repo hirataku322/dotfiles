@@ -17,6 +17,9 @@ SYMLINKS=(
   ".config/github-copilot:~/.config/github-copilot"
   "claude/settings.json:~/.claude/settings.json"
   ".config/lazygit/config.yml:~/Library/Application Support/lazygit/config.yml"
+
+  # ディレクトリのシンボリックリンク
+  ".config/opencode:~/.config/opencode"
 )
 
 for item in "${SYMLINKS[@]}"; do

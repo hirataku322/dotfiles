@@ -26,6 +26,7 @@ alias ll='ls -la'
 alias wc='wc -l'
 alias history='history -id'
 alias v="nvim"
+alias oc="opencode"
 
 # git
 alias ghb="gh browse"
@@ -64,7 +65,8 @@ fi
 
 # auto suggestions (hardcode brew prefix to avoid slow $(brew --prefix))
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-bindkey '^k' autosuggest-accept
+bindkey '^f' autosuggest-execute
+bindkey '^]' autosuggest-accept
 
 # zk note management
 export ZK_NOTEBOOK_DIR="$HOME/ghq/github.com/hirataku322/note"

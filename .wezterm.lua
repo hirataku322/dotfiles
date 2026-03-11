@@ -67,14 +67,14 @@ config.keys = {
     desc = 'Create new tab',
   },
   {
-    key = 'n',
-    mods = 'LEADER',
+    key = 'k',
+    mods = 'CTRL',
     action = wezterm.action.ActivateTabRelative(1),
     desc = 'Switch to next tab',
   },
   {
-    key = 'p',
-    mods = 'LEADER',
+    key = 'j',
+    mods = 'CTRL',
     action = wezterm.action.ActivateTabRelative(-1),
     desc = 'Switch to previous tab',
   },

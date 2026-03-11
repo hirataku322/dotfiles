@@ -1,6 +1,6 @@
 customCommands:
   - key: "C"
-    command: 'msg=$(git diff --staged | claude --model haiku -p "以下のgit diffに対してconventional commitメッセージを1行だけ出力してください。日本語で。形式: type: 説明（例: feat: ○○を追加）。余計なテキスト・コードブロック・説明は一切不要") && echo "Committing with message: $msg" && git commit -m "$msg"'
+    command: 'msg=$(git diff --staged --stat | opencode --model github-copilot/claude-haiku-4.5 run "git diffからconventional commitを1行。日本語。形式: type: 説明。余計な出力禁止)") && echo "Committing with message: $msg" && git commit -m "$msg"'
     context: "files"
     description: "AI: コミットメッセージ自動生成"
     loadingText: "Generating commit message..."

@@ -2,9 +2,9 @@ return {
   "akinsho/toggleterm.nvim",
   version = "*",
   keys = {
-    { "<C-h>",      desc = "Toggle terminal" },
-    { "<leader>lg", desc = "Toggle lazygit" },
-    { "<C-,>",      desc = "Toggle opencode" },
+    { "<C-h>",     desc = "Toggle terminal" },
+    { "<leader>l", desc = "Toggle lazygit" },
+    { "<C-,>",     desc = "Toggle opencode" },
   },
   config = function()
     require("toggleterm").setup({

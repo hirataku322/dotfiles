@@ -10,10 +10,23 @@ config.use_ime = true
 config.color_scheme = 'catppuccin-mocha'
 
 config.window_background_opacity = 0.90
--- config.macos_window_background_blur = 10
+config.macos_window_background_blur = 10
+config.window_padding = {
+  left = 8,
+  right = 8,
+  top = 4,
+  bottom = 0,
+}
+config.inactive_pane_hsb = {
+  saturation = 0.9,
+  brightness = 0.75,
+}
+config.scrollback_lines = 10000
 
 -- tab bar
 config.window_decorations = "RESIZE"
+config.hide_tab_bar_if_only_one_tab = true
+config.switch_to_last_active_tab_when_closing_tab = true
 
 -- keymap
 config.leader = { key = 'q', mods = 'CTRL' }
@@ -25,10 +38,22 @@ config.keys = {
     desc = 'Split pane horizontally',
   },
   {
+    key = '\\',
+    mods = 'LEADER',
+    action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' },
+    desc = 'Split pane horizontally (US keyboard)',
+  },
+  {
     key = '-',
     mods = 'LEADER',
     action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' },
     desc = 'Split pane vertically',
+  },
+  {
+    key = '_',
+    mods = 'LEADER|SHIFT',
+    action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' },
+    desc = 'Split pane vertically (US keyboard)',
   },
   {
     key = 'x',
@@ -65,6 +90,24 @@ config.keys = {
     mods = 'LEADER',
     action = wezterm.action.SpawnCommandInNewTab,
     desc = 'Create new tab',
+  },
+  {
+    key = 'p',
+    mods = 'LEADER',
+    action = wezterm.action.ActivateCommandPalette,
+    desc = 'Open command palette',
+  },
+  {
+    key = 'w',
+    mods = 'LEADER',
+    action = wezterm.action.ShowLauncher,
+    desc = 'Open launcher',
+  },
+  {
+    key = 'f',
+    mods = 'LEADER',
+    action = wezterm.action.ToggleFullScreen,
+    desc = 'Toggle fullscreen',
   },
   {
     key = 'k',

@@ -21,7 +21,6 @@ setopt EXTENDED_HISTORY
 alias mkdir="mkdir -p"
 alias cp='cp -r'
 alias cd='z'
-alias ls='exa -1a --sort type'
 alias ll='ls -la'
 alias wc='wc -l'
 alias history='history -id'
@@ -86,3 +85,5 @@ function zf() {
 function zt() {
   zk tag list "$ZK_NOTEBOOK_DIR"
 }
+
+if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi

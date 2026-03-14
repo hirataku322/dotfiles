@@ -4,6 +4,7 @@ return {
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-treesitter/nvim-treesitter",
+    "franco-ruggeri/codecompanion-spinner.nvim",
   },
   config = function()
     require("codecompanion").setup({
@@ -36,7 +37,11 @@ return {
         },
       },
       opts = {
-        language = "Japanese"
+        language = "Japanese",
+        send_code = false
+      },
+      extensions = {
+        spinner = {}
       }
     })
 

@@ -11,6 +11,10 @@ export const NotificationPlugin = async ({
       if (event.type === "session.idle") {
         await $`terminal-notifier -title 'Opencode' -message 'Session completed' -sound Glass`;
       }
+      // Send notification when waiting for permission approval
+      if (event.type === "permission.asked") {
+        await $`terminal-notifier -title 'Opencode' -message 'Waiting for your approval' -sound Ping`;
+      }
     },
   };
 };

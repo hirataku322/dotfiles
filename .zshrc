@@ -35,9 +35,9 @@ alias ghqr='z $(ghq list -p | fzf)'
 alias lg='lazygit'
 
 # work trunk
-alias wl="wt list"
-alias wr="wt remove"
-alias ws="wt switch"
+alias wls="wt list"
+alias wrm="wt remove"
+alias wsw="wt switch"
 
 git_create_repo() {
   repo_path=$(ghq create $1)

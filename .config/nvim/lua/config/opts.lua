@@ -45,6 +45,26 @@ vim.opt.undofile = true -- undoファイルを保存
 -- 置換プレビュー
 vim.opt.inccommand = "split" -- 置換時にリアルタイムプレビュー表示
 
+-- 外部変更の自動再読み込み
+-- autoread だけでは checktime が呼ばれないと反応しないため、
+-- フォーカス復帰・カーソル静止・コマンドライン離脱のタイミングで強制チェック。
+-- 編集途中でも無条件に上書きするため BufReadCmd で確認ダイアログを抑制。
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
+  pattern = "*",
+  callback = function()
+    if vim.fn.mode() ~= "c" then
+      vim.cmd("checktime")
+    end
+  end,
+})
+
+vim.api.nvim_create_autocmd("FileChangedShell", {
+  pattern = "*",
+  callback = function()
+    vim.v.fcs_choice = "reload"
+  end,
+})
+
 -- config/ ホットリロード
 -- :source で即反映できるため BufWritePost で自動ソースする。
 vim.api.nvim_create_autocmd("BufWritePost", {

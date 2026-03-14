@@ -26,11 +26,18 @@ alias wc='wc -l'
 alias history='history -id'
 alias v="nvim"
 alias oc="opencode"
+alias zs="source ~/.zshrc"
+alias zp="source ~/.zprofile"
 
 # git
 alias ghb="gh browse"
 alias ghqr='z $(ghq list -p | fzf)'
 alias lg='lazygit'
+
+# work trunk
+alias wl="wt list"
+alias wr="wt remove"
+alias ws="wt switch"
 
 git_create_repo() {
   repo_path=$(ghq create $1)

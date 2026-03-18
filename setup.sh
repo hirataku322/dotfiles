@@ -12,14 +12,12 @@ SYMLINKS=(
   ".wezterm.lua:~/.wezterm.lua"
   ".zshrc:~/.zshrc"
   ".gitconfig:~/.gitconfig"
-  ".config/starship.toml:~/.config/starship.toml"
-  ".config/nvim:~/.config/nvim"
-  ".config/github-copilot:~/.config/github-copilot"
+  "starship.toml:~/.config/starship.toml"
+  "nvim:~/.config/nvim"
+  "github-copilot:~/.config/github-copilot"
   "claude/settings.json:~/.claude/settings.json"
-  ".config/lazygit/config.yml:~/Library/Application Support/lazygit/config.yml"
-
-  # ディレクトリのシンボリックリンク
-  ".config/opencode:~/.config/opencode"
+  "lazygit/config.yml:~/Library/Application Support/lazygit/config.yml"
+  "opencode:~/.config/opencode"
 )
 
 for item in "${SYMLINKS[@]}"; do

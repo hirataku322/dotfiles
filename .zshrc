@@ -33,6 +33,7 @@ alias zp="source ~/.zprofile"
 alias ghb="gh browse"
 alias ghqr='z $(ghq list -p | fzf)'
 alias lg='lazygit'
+alias gco='git checkout'
 
 # work trunk
 alias w="wt"

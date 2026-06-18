@@ -31,9 +31,39 @@ alias zp="source ~/.zprofile"
 
 # git
 alias ghb="gh browse"
-alias ghqr='z $(ghq list -p | fzf)'
+alias g='z $(ghq list -p | fzf)'
 alias lg='lazygit'
 alias gco='git checkout'
+
+# git: remote 含むブランチを fzf で選び、fetch → checkout
+gcb() {
+  git rev-parse --git-dir >/dev/null 2>&1 || {
+    echo "Not a git repository" >&2
+    return 1
+  }
+
+  # remote の最新を取得（消えた remote 追跡ブランチも掃除）
+  git fetch --all --prune --quiet
+
+  local branch
+  branch=$(
+    git branch -a \
+      | grep -v -- '->' \
+      | cut -c3- \
+      | sed 's#^remotes/[^/]*/##' \
+      | sort -u \
+      | fzf \
+          --height 50% \
+          --reverse \
+          --ansi \
+          --prompt 'checkout> ' \
+          --preview 'git log --oneline --graph --color=always -20 {} 2>/dev/null || git log --oneline --graph --color=always -20 origin/{} 2>/dev/null'
+  )
+
+  [[ -z "$branch" ]] && return 0   # 未選択（Esc）なら何もしない
+
+  git checkout "$branch"
+}
 
 # work trunk
 alias w="wt"

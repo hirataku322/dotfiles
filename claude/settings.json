@@ -85,7 +85,6 @@
       "WebSearch"
     ]
   },
-  "model": "opus",
   "hooks": {
     "Stop": [
       {
@@ -125,5 +124,9 @@
       }
     }
   },
-  "autoAcceptEdits": true
+  "effortLevel": "medium",
+  "editorMode": "vim",
+  "autoCompactEnabled": false,
+  "autoAcceptEdits": true,
+  "model": "opus"
 }

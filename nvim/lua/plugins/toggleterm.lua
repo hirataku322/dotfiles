@@ -4,7 +4,7 @@ return {
   keys = {
     { "<C-h>",     desc = "Toggle terminal" },
     { "<leader>l", desc = "Toggle lazygit" },
-    { "<C-,>",     desc = "Toggle opencode" },
+    { "<C-,>",     desc = "Toggle claude" },
   },
   config = function()
     require("toggleterm").setup({
@@ -43,15 +43,23 @@ return {
       lazygit:toggle()
     end, { desc = "Toggle lazygit" })
 
-    -- opencode in toggleterm
-    local opencode = Terminal:new({
-      cmd = "opencode",
+    -- AIエージェントCLIをホスト名で切り替え(個人Macはclaude、それ以外はopencode)
+    local personal_hostnames = {
+      "yamakawatakutos-MacBook-Air.local",
+      "yamakawatakutos-MacBook-Air",
+    }
+    local hostname = vim.fn.hostname()
+    local is_personal = vim.tbl_contains(personal_hostnames, hostname)
+    local agent_cmd = is_personal and "claude" or "opencode"
+
+    local agent = Terminal:new({
+      cmd = agent_cmd,
       direction = "float",
       hidden = true,
     })
 
     vim.keymap.set("n", "<C-,>", function()
-      opencode:toggle()
-    end, { desc = "Toggle opencode" })
+      agent:toggle()
+    end, { desc = "Toggle " .. agent_cmd })
   end,
 }

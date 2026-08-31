@@ -34,6 +34,8 @@ alias ghb="gh browse"
 alias g='z $(ghq list -p | fzf)'
 alias lg='lazygit'
 alias gco='git checkout'
+# 現在のブランチに対応する GitLab MR をブラウザで開く
+alias mro='glab mr view --web'
 
 # git: remote 含むブランチを fzf で選び、fetch → checkout
 gcb() {

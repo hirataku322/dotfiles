@@ -178,7 +178,6 @@
       "Bash(gh api --method PUT:*)"
     ]
   },
-  "model": "opus",
   "hooks": {
     "Stop": [
       {
@@ -219,8 +218,8 @@
     }
   },
   "effortLevel": "medium",
+  "tui": "fullscreen",
   "editorMode": "vim",
   "autoCompactEnabled": false,
-  "autoAcceptEdits": true,
-  "tui": "fullscreen"
+  "autoAcceptEdits": true
 }
